@@ -11193,6 +11193,10 @@ static const struct _battle_data {
 
 	{ "feature.stylist",                    &battle_config.feature_stylist,                 1,      0,      1,              },
 	{ "feature.banking_state_enforce",      &battle_config.feature_banking_state_enforce,   0,      0,      1,              },
+	{ "feature.goldpc_active",              &battle_config.feature_goldpc_active,           1,      0,      1,              },
+	{ "feature.goldpc_time",                &battle_config.feature_goldpc_time,          3600,      0,   3600,              },
+	{ "feature.goldpc_max_points",          &battle_config.feature_goldpc_max_points,     300,      0,    300,              },
+	{ "feature.goldpc_vip",                 &battle_config.feature_goldpc_vip,              1,      0,      1,              },	
 #ifdef RENEWAL
 	{ "feature.instance_allow_reconnect",   &battle_config.instance_allow_reconnect,        1,      0,      1,              },
 #else
