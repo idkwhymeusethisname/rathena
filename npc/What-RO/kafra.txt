@@ -1,0 +1,89 @@
+mooc,154,96,5	script	Kafra Employee	113,{
+	cutin "kafra_05",2;
+	mes "^FF7F50[ Kafra Employee ]^000000";
+	mes "โปรดเลือกบริการ";
+next;
+	menu "^4d4dffบันทึกจุดเกิด^000000",L_Savep
+	,"เปิดคลังเก็บของ",L_OpenS
+	,"เปิดคลังกิลด์",L_OpenSG;
+//	,"^FF0000ลบสเตตัส และสกิล^000000",L_Resetall
+//	,"แต่งตัวละคร",L_StylistUI
+//	,"รับสกิลเสริมอาชีพ",L_QSkill;
+
+L_Savep:
+	mes "บันทึกเรียบร้อยแล้ว";
+	savepoint "mooc",158,93;
+	close3;
+
+L_OpenS:
+	openstorage;
+	close3;
+
+L_OpenSG:
+	switch(guildopenstorage()){
+	case GSTORAGE_STORAGE_ALREADY_OPEN:
+		mes "เจ้ากำลังใช้คลังของเจ้าอยู่.";
+		mes "โปรดรอสักครู่ แล้วกลับมาใหม่.";
+		break;
+	case GSTORAGE_ALREADY_OPEN:
+		mes "คลังกิลด์ถูกใช้งานอยู่.";
+		mes "โปรดรอสักครู่ แล้วกลับมาใหม่.";
+		break;
+	case GSTORAGE_NO_GUILD:
+		mes "เจ้าไม่ได้อยู่ในกิลด์!";
+		break;
+	case GSTORAGE_NO_STORAGE:
+		mes "กิลด์ไม่มีคลังกิลด์.";
+		break;
+	case GSTORAGE_NO_PERMISSION:
+		mes "เจ้าไม่มีสิทธิ์ใช้คลังกิลด์!";
+		break;
+	}
+	close3;
+
+L_Resetall:
+	//	 				Skills,			Stats,			Both
+	setarray .@Reset,	5000*BaseLevel,	5000*BaseLevel,	9000*BaseLevel;
+	mes "บริการลบ สเตตัส และสกิล ค่าบริการจะแพงขึ้นตามเลเวลตัวละคร.";
+	mes "ลบ สกิล: ^4d4dff"+ callfunc("F_InsertComma",.@Reset[0]) +"^000000z";
+	mes "ลบ สเตตัส: ^4d4dff"+ callfunc("F_InsertComma",.@Reset[1]) +"^000000z";
+	mes "ลบ ทั้งคู่: ^4d4dff"+ callfunc("F_InsertComma",.@Reset[2]) +"^000000z";
+	next;
+	set .@i,(select("ลบ สกิล:ลบ สเตตัส:^FF3355ลบ ทั้งคู่^000000:ยกเลิก"));
+	if(.@i > 3) close3;
+	if (Zeny < .@Reset[.@i-1]) {
+		mes "เจ้ามีเงินไม่พอ.";
+	close3;
+		}
+	set Zeny, Zeny-.@Reset[.@i-1];
+	if(.@i&1){
+		sc_end_class;
+		ResetSkill;
+		}
+	if(.@i&2) ResetStatus;
+		mes "จงลบหายไปซ๊าาาาา!";
+	close3;
+
+L_StylistUI:
+	mes "เลือกบริการที่ต้องการ";
+	next;
+	switch(select("แต่งตัวละคร","ร้านขายของเสริมสวย")) {
+	case 1:
+		openstylist();
+		close3;
+	case 2:
+		callshop "beautyshop",1;
+		close3;
+	}
+
+L_QSkill:
+	if (select("พร้อมแล้ว:ยังก่อน") == 2) {
+		mes "รอได้เสมอ... >.>";
+		close3;
+		}
+	callfunc "F_GetPlatinumSkills";
+		mes "ได้รับสกิลเสริมเรียบร้อย!";
+		close3;
+
+}
+-	shop	beautyshop	-1,6046:1000,6047:1000,6707:1000,6959:1000,7622:1000
