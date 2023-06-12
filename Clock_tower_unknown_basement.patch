@@ -1,0 +1,1836 @@
+From 98a75c2226c73e1cfd3e3771e3cb92e17a267660 Mon Sep 17 00:00:00 2001
+From: Atemo <capucrath@gmail.com>
+Date: Tue, 28 Feb 2023 00:04:42 +0100
+Subject: [PATCH 1/3] Clock tower unknown basement
+
+---
+ db/re/item_db_usable.yml                      |   7 +
+ db/re/mob_db.yml                              | 272 +++++++-
+ db/re/quest_db.yml                            |  67 ++
+ npc/re/merchants/barters.yml                  |   1 +
+ .../barters/clock_unknown_basement.yml        | 439 ++++++++++++
+ npc/re/mobs/dungeons/c_tower.txt              |  12 +
+ .../quests/clock_tower_unknown_basement.txt   | 646 ++++++++++++++++++
+ npc/re/scripts_athena.conf                    |   1 +
+ 8 files changed, 1433 insertions(+), 12 deletions(-)
+ create mode 100644 npc/re/merchants/barters/clock_unknown_basement.yml
+ create mode 100644 npc/re/quests/clock_tower_unknown_basement.txt
+
+diff --git a/db/re/item_db_usable.yml b/db/re/item_db_usable.yml
+index 956378049ac..8ce3f65de0e 100644
+--- a/db/re/item_db_usable.yml
++++ b/db/re/item_db_usable.yml
+@@ -64713,6 +64713,13 @@ Body:
+     Script: |
+       specialeffect2 EF_POTION_BERSERK;
+       sc_start SC_INFINITY_DRINK,1800000,0;
++  - Id: 101099
++    AegisName: ClockTower_Regulator
++    Name: Spring Regulator
++    Type: DelayConsume
++    Weight: 10
++    Script: |
++      item_enchant(24);
+   - Id: 101103
+     AegisName: Enchant_Stone_Box25
+     Name: Costume Enchant Stone Box 25
+diff --git a/db/re/mob_db.yml b/db/re/mob_db.yml
+index 59d285e56b8..e8d64db0526 100644
+--- a/db/re/mob_db.yml
++++ b/db/re/mob_db.yml
+@@ -93403,8 +93403,45 @@ Body:
+ #    AegisName: MD_TRE_WHISPER
+ #  - Id: 20117
+ #    AegisName: MD_TRE_HYDRA
+-#  - Id: 20118
+-#    AegisName: GOBLIN_KING
++  - Id: 20118
++    AegisName: GOBLIN_KING
++    Name: Goblin King
++    Level: 255
++    Hp: 279059768
++    BaseExp: 9966420
++    JobExp: 6644280
++    Attack: 10804
++    Attack2: 1792
++    Defense: 670
++    MagicDefense: 104
++    MagicResistance: 500
++    Resistance: 500
++    Str: 170
++    Agi: 201
++    Vit: 84
++    Int: 160
++    Dex: 170
++    Luk: 70
++    AttackRange: 1
++    SkillRange: 10
++    ChaseRange: 12
++    Size: Medium
++    Race: Demihuman
++    Element: Wind
++    ElementLevel: 3
++    WalkSpeed: 110
++    AttackDelay: 1120
++    AttackMotion: 620
++    DamageMotion: 240
++    DamageTaken: 10
++    Ai: 21
++    Class: Boss
++    Modes:
++      Mvp: true
++    Drops:
++      - Item: Goblin_Mask_04
++        Rate: 500
++        # RandomOptionGroup: 60BW
+ #  - Id: 20119
+ #    AegisName: BAD_CATCUMBER
+ #  - Id: 20120
+@@ -93517,16 +93554,227 @@ Body:
+ #    AegisName: RAYDRIC_ARCHER_MJ
+ #  - Id: 20174
+ #    AegisName: RAGGED_ZOMBIE_MJ
+-#  - Id: 20175
+-#    AegisName: EXTRA_JOKER
+-#  - Id: 20176
+-#    AegisName: ERZSEBET
+-#  - Id: 20177
+-#    AegisName: JENIFFER
+-#  - Id: 20178
+-#    AegisName: GENERAL_ORC
+-#  - Id: 20179
+-#    AegisName: SIEGLOUSE
++  - Id: 20175
++    AegisName: EXTRA_JOKER
++    Name: Extra Joker
++    Level: 255
++    Hp: 9156079
++    BaseExp: 327003
++    JobExp: 218002
++    Attack: 10804
++    Attack2: 5876
++    Defense: 281
++    MagicDefense: 110
++    MagicResistance: 350
++    Resistance: 150
++    Str: 198
++    Agi: 297
++    Vit: 35
++    Int: 180
++    Dex: 280
++    Luk: 90
++    AttackRange: 2
++    SkillRange: 10
++    ChaseRange: 12
++    Size: Large
++    Race: Demon
++    Element: Wind
++    ElementLevel: 4
++    WalkSpeed: 100
++    AttackDelay: 1364
++    AttackMotion: 864
++    DamageMotion: 432
++    Ai: 04  # TODO
++    Drops:
++      - Item: Zargon
++        Rate: 5000
++      - Item: Old_Card_Album
++        Rate: 5
++      - Item: Contracts_In_Shadow
++        Rate: 50
++      - Item: Yellow_Herb
++        Rate: 2500
++      - Item: Katar_Of_Piercing_Wind
++        Rate: 1
++      - Item: Oridecon
++        Rate: 250
++      - Item: Jokers_Wild
++        Rate: 2500
++  - Id: 20176
++    AegisName: ERZSEBET
++    Name: Erzsebet
++    Level: 254
++    Hp: 9046643
++    BaseExp: 323094
++    JobExp: 215396
++    Attack: 10231
++    Attack2: 6746
++    Defense: 213
++    MagicDefense: 115
++    MagicResistance: 235
++    Resistance: 177
++    Str: 180
++    Agi: 270
++    Vit: 33
++    Int: 190
++    Dex: 264
++    Luk: 77
++    AttackRange: 1
++    SkillRange: 10
++    ChaseRange: 12
++    Size: Medium
++    Race: Demon
++    Element: Dark
++    ElementLevel: 1
++    WalkSpeed: 100
++    AttackDelay: 1504
++    AttackMotion: 840
++    DamageMotion: 900
++    Ai: 04  # TODO
++    Drops:
++      - Item: Star_Crumb
++        Rate: 75
++      - Item: Starsand_Of_Witch
++        Rate: 3500
++      - Item: Witchs_White_Shirt
++        Rate: 10
++        # RandomOptionGroup: ZA1  # TODO
++      - Item: Arc_Wand_
++        Rate: 15
++      - Item: Old_Magic_Book
++        Rate: 40
++      - Item: Old_Broom
++        Rate: 50
++      - Item: Cute_Broom
++        Rate: 2200
++  - Id: 20177
++    AegisName: JENIFFER
++    Name: Jennifer
++    Level: 255
++    Hp: 8937208
++    BaseExp: 319186
++    JobExp: 212791
++    Attack: 9976
++    Attack2: 5769
++    Defense: 329
++    MagicDefense: 109
++    MagicResistance: 200
++    Resistance: 200
++    Str: 178
++    Agi: 267
++    Vit: 64
++    Int: 201
++    Dex: 301
++    Luk: 77
++    AttackRange: 7
++    SkillRange: 10
++    ChaseRange: 12
++    Size: Medium
++    Race: Fish
++    Element: Dark
++    ElementLevel: 1
++    WalkSpeed: 300
++    AttackDelay: 832
++    AttackMotion: 500
++    DamageMotion: 600
++    Ai: 04  # TODO
++    Drops:
++      - Item: Coral_Reef
++        Rate: 10000
++      - Item: Tentacle
++        Rate: 10000
++      - Item: Sticky_Mucus
++        Rate: 10000
++      - Item: Panacea
++        Rate: 500
++      - Item: Red_Gemstone
++        Rate: 1000
++      - Item: Katar_Of_Raging_Blaze
++        Rate: 5
++      - Item: Showy_Coral_Reef
++        Rate: 1800
++  - Id: 20178
++    AegisName: GENERAL_ORC
++    Name: General Orc
++    Level: 255
++    Hp: 8973687
++    BaseExp: 320489
++    JobExp: 213659
++    Attack: 11293
++    Attack2: 4904
++    Defense: 570
++    MagicDefense: 149
++    MagicResistance: 297
++    Resistance: 347
++    Str: 270
++    Agi: 214
++    Vit: 90
++    Int: 170
++    Dex: 309
++    Luk: 80
++    AttackRange: 1
++    SkillRange: 10
++    ChaseRange: 12
++    Size: Large
++    Race: Demihuman
++    Element: Dark
++    ElementLevel: 2
++    WalkSpeed: 150
++    AttackDelay: 1500
++    AttackMotion: 500
++    DamageMotion: 1000
++    Ai: 04  # TODO
++    Drops:
++      - Item: Steel
++        Rate: 225
++      - Item: Oridecon
++        Rate: 98
++      - Item: Elunium
++        Rate: 133
++  - Id: 20179
++    AegisName: SIEGLOUSE
++    Name: Sieglouse
++    Level: 253
++    Hp: 9083122
++    BaseExp: 324397
++    JobExp: 216265
++    Attack: 10997
++    Attack2: 4223
++    Defense: 380
++    MagicDefense: 103
++    MagicResistance: 200
++    Resistance: 200
++    Str: 230
++    Agi: 311
++    Vit: 80
++    Int: 70
++    Dex: 310
++    Luk: 77
++    AttackRange: 2
++    SkillRange: 10
++    ChaseRange: 12
++    Size: Small
++    Race: Insect
++    Element: Earth
++    ElementLevel: 2
++    WalkSpeed: 100
++    AttackDelay: 960
++    AttackMotion: 500
++    DamageMotion: 480
++    Ai: 04  # TODO
++    Drops:
++      - Item: Round_Shell
++        Rate: 8750
++      - Item: Solid_Shell
++        Rate: 2000
++      - Item: Great_Nature
++        Rate: 50
++      - Item: Red_Gemstone
++        Rate: 750
++      - Item: Shining_Round_Shell
++        Rate: 1900
++      - Item: Gold
++        Rate: 1
+ #  - Id: 20180
+ #    AegisName: TACNU_BRZ
+ #  - Id: 20181
+diff --git a/db/re/quest_db.yml b/db/re/quest_db.yml
+index 93894ce5961..fc06b09cb55 100644
+--- a/db/re/quest_db.yml
++++ b/db/re/quest_db.yml
+@@ -2961,6 +2961,73 @@ Body:
+   - Id: 5931
+     Title: "[Standby] Subjugation-Yanggeochon"
+     TimeLimit: 4h
++  - Id: 5961
++    Title: "[Standby] The Devil's Meal"
++    TimeLimit: 4h
++  - Id: 5962
++    Title: Devil's Breakfast
++    Targets:
++      - Id: 1
++        Count: 100
++        Location: clock_01
++        MapMobTargets:
++          EXTRA_JOKER: true
++          ERZSEBET: true
++          JENIFFER: true
++          GENERAL_ORC: true
++          SIEGLOUSE: true
++  - Id: 5963
++    Title: Devil's Lunch
++    Targets:
++      - Id: 1
++        Count: 300
++        Location: clock_01
++        MapMobTargets:
++          EXTRA_JOKER: true
++          ERZSEBET: true
++          JENIFFER: true
++          GENERAL_ORC: true
++          SIEGLOUSE: true
++  - Id: 5964
++    Title: Devil's Dinner
++    Targets:
++      - Id: 1
++        Count: 1000
++        Location: clock_01
++        MapMobTargets:
++          EXTRA_JOKER: true
++          ERZSEBET: true
++          JENIFFER: true
++          GENERAL_ORC: true
++          SIEGLOUSE: true
++  - Id: 5965
++    Title: "[Standby] Devil's Special"
++    # TODO: reset monday at 4h
++    TimeLimit: 7d 4h
++  - Id: 5966
++    Title: Devil's Special
++    Targets:
++      - Id: 1
++        Count: 5000
++        Location: clock_01
++        MapMobTargets:
++          EXTRA_JOKER: true
++          ERZSEBET: true
++          JENIFFER: true
++          GENERAL_ORC: true
++          SIEGLOUSE: true
++  - Id: 5967
++    Title: "[Standby] Devil's Snack"
++    TimeLimit: 4h
++  - Id: 5968
++    Title: "[Standby] Devil's Pet Mimic"
++    TimeLimit: 4h
++  - Id: 5969
++    Title: Food for Pet Mimic
++  - Id: 5970
++    Title: Delivery of food (?) completed
++  - Id: 5971
++    Title: Devil in the box
+   - Id: 6000
+     Title: Job Change to Taekwon
+   - Id: 6001
+diff --git a/npc/re/merchants/barters.yml b/npc/re/merchants/barters.yml
+index 62bf9a37c2e..b0caedac544 100644
+--- a/npc/re/merchants/barters.yml
++++ b/npc/re/merchants/barters.yml
+@@ -56,3 +56,4 @@ Footer:
+   - Path: npc/re/merchants/barters/enchantgrade.yml
+   - Path: npc/re/merchants/barters/cashmall.yml
+   - Path: npc/re/merchants/barters/rgsr_in.yml
++  - Path: npc/re/merchants/barters/clock_unknown_basement.yml
+diff --git a/npc/re/merchants/barters/clock_unknown_basement.yml b/npc/re/merchants/barters/clock_unknown_basement.yml
+new file mode 100644
+index 00000000000..4300965e00c
+--- /dev/null
++++ b/npc/re/merchants/barters/clock_unknown_basement.yml
+@@ -0,0 +1,439 @@
++# This file is a part of rAthena.
++#   Copyright(C) 2022 rAthena Development Team
++#   https://rathena.org - https://github.com/rathena
++#
++# This program is free software: you can redistribute it and/or modify
++# it under the terms of the GNU General Public License as published by
++# the Free Software Foundation, either version 3 of the License, or
++# (at your option) any later version.
++#
++# This program is distributed in the hope that it will be useful,
++# but WITHOUT ANY WARRANTY; without even the implied warranty of
++# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
++# GNU General Public License for more details.
++#
++# You should have received a copy of the GNU General Public License
++# along with this program. If not, see <http://www.gnu.org/licenses/>.
++#
++###########################################################################
++# Barter Database
++###########################################################################
++#
++# Barter Settings
++#
++###########################################################################
++#  - Name               NPC name.
++#    Map                Map name. (Default: not on a map)
++#    X                  Map x coordinate. (Default: 0)
++#    Y                  Map y coordinate. (Default: 0)
++#    Direction          Direction the NPC is looking. (Default: North)
++#    Sprite             Sprite name of the NPC. (Default: FakeNpc)
++#    Items:             List of sold items.
++#      - Index          Index of the item inside the shop. (0-...)
++#                       Maximum index depends on client.
++#        Item           Aegis name of the item.
++#        Stock          Amount of item in stock. 0 means unlimited. (Default: 0)
++#        Zeny           Cost of them item in Zeny. (Default: 0)
++#        RequiredItems: List of required items (Optional)
++#          - Index      Index of the required item. (0-4)
++#            Item       Aegis name of required item.
++#            Amount     Amount of required item. (Default: 1)
++#            Refine     Refine level of required item. (Default: 0)
++###########################################################################
++
++Header:
++  Type: BARTER_DB
++  Version: 1
++
++Body:
++  - Name: barter_clock_ub_solid
++    Items:
++      - Index: 0
++        Item: Solid_Claymore
++        Stock: 0
++        Zeny: 0
++        RequiredItems:
++          - Index: 0
++            Item: ClockTower_Lead
++            Amount: 125
++          - Index: 1
++            Item: ClockTower_Gear
++            Amount: 10
++          - Index: 2
++            Item: Fourth_Bh_Sword
++            Amount: 1
++      - Index: 1
++        Item: Solid_Staff
++        Stock: 0
++        Zeny: 0
++        RequiredItems:
++          - Index: 0
++            Item: ClockTower_Lead
++            Amount: 125
++          - Index: 1
++            Item: ClockTower_Gear
++            Amount: 10
++          - Index: 2
++            Item: Fourth_Bh_Staff
++            Amount: 1
++      - Index: 2
++        Item: Solid_Manual
++        Stock: 0
++        Zeny: 0
++        RequiredItems:
++          - Index: 0
++            Item: ClockTower_Lead
++            Amount: 125
++          - Index: 1
++            Item: ClockTower_Gear
++            Amount: 10
++          - Index: 2
++            Item: Fourth_1h_Book
++            Amount: 1
++      - Index: 3
++        Item: Solid_Spear
++        Stock: 0
++        Zeny: 0
++        RequiredItems:
++          - Index: 0
++            Item: ClockTower_Lead
++            Amount: 125
++          - Index: 1
++            Item: ClockTower_Gear
++            Amount: 10
++          - Index: 2
++            Item: Fourth_1h_Spear
++            Amount: 1
++      - Index: 4
++        Item: Solid_Wand
++        Stock: 0
++        Zeny: 0
++        RequiredItems:
++          - Index: 0
++            Item: ClockTower_Lead
++            Amount: 125
++          - Index: 1
++            Item: ClockTower_Gear
++            Amount: 10
++          - Index: 2
++            Item: Fourth_1h_Wand
++            Amount: 1
++      - Index: 5
++        Item: Solid_Dagger
++        Stock: 0
++        Zeny: 0
++        RequiredItems:
++          - Index: 0
++            Item: ClockTower_Lead
++            Amount: 125
++          - Index: 1
++            Item: ClockTower_Gear
++            Amount: 10
++          - Index: 2
++            Item: Fourth_1h_Nindo
++            Amount: 1
++      - Index: 6
++        Item: Solid_Edge
++        Stock: 0
++        Zeny: 0
++        RequiredItems:
++          - Index: 0
++            Item: ClockTower_Lead
++            Amount: 125
++          - Index: 1
++            Item: ClockTower_Gear
++            Amount: 10
++          - Index: 2
++            Item: Fourth_1h_Edge
++            Amount: 1
++      - Index: 7
++        Item: Solid_Rod
++        Stock: 0
++        Zeny: 0
++        RequiredItems:
++          - Index: 0
++            Item: ClockTower_Lead
++            Amount: 125
++          - Index: 1
++            Item: ClockTower_Gear
++            Amount: 10
++          - Index: 2
++            Item: Fourth_1h_Rod
++            Amount: 1
++  - Name: barter_clock_ub_gear
++    Items:
++      - Index: 0
++        Item: ClockTower_Gear
++        Stock: 0
++        Zeny: 0
++        RequiredItems:
++          - Index: 0
++            Item: ClockTower_Lead
++            Amount: 15
++      - Index: 1
++        Item: ClockTower_Regulator
++        Stock: 0
++        Zeny: 0
++        RequiredItems:
++          - Index: 0
++            Item: ClockTower_Lead
++            Amount: 15
++          - Index: 1
++            Item: ClockTower_Gear
++            Amount: 1
++  - Name: barter_clock_ub_wicked
++    Items:
++      - Index: 0
++        Item: Wicked_Katar
++        Stock: 0
++        Zeny: 0
++        RequiredItems:
++          - Index: 0
++            Item: ClockTower_Lead
++            Amount: 125
++          - Index: 1
++            Item: ClockTower_Gear
++            Amount: 10
++          - Index: 2
++            Item: Fourth_Bh_Katar
++            Amount: 1
++      - Index: 1
++        Item: Wicked_Cross
++        Stock: 0
++        Zeny: 0
++        RequiredItems:
++          - Index: 0
++            Item: ClockTower_Lead
++            Amount: 125
++          - Index: 1
++            Item: ClockTower_Gear
++            Amount: 10
++          - Index: 2
++            Item: Fourth_1h_Mace
++            Amount: 1
++      - Index: 2
++        Item: Wicked_Dagger
++        Stock: 0
++        Zeny: 0
++        RequiredItems:
++          - Index: 0
++            Item: ClockTower_Lead
++            Amount: 125
++          - Index: 1
++            Item: ClockTower_Gear
++            Amount: 10
++          - Index: 2
++            Item: Fourth_1h_Dagger
++            Amount: 1
++      - Index: 3
++        Item: Wicked_Blade
++        Stock: 0
++        Zeny: 0
++        RequiredItems:
++          - Index: 0
++            Item: ClockTower_Lead
++            Amount: 125
++          - Index: 1
++            Item: ClockTower_Gear
++            Amount: 10
++          - Index: 2
++            Item: Fourth_1h_Sword
++            Amount: 1
++      - Index: 4
++        Item: Wicked_Axe
++        Stock: 0
++        Zeny: 0
++        RequiredItems:
++          - Index: 0
++            Item: ClockTower_Lead
++            Amount: 125
++          - Index: 1
++            Item: ClockTower_Gear
++            Amount: 10
++          - Index: 2
++            Item: Fourth_Bh_Axe
++            Amount: 1
++      - Index: 5
++        Item: Wicked_Book
++        Stock: 0
++        Zeny: 0
++        RequiredItems:
++          - Index: 0
++            Item: ClockTower_Lead
++            Amount: 125
++          - Index: 1
++            Item: ClockTower_Gear
++            Amount: 10
++          - Index: 2
++            Item: Fourth_1h_Manual
++            Amount: 1
++      - Index: 6
++        Item: Wicked_Plant
++        Stock: 0
++        Zeny: 0
++        RequiredItems:
++          - Index: 0
++            Item: ClockTower_Lead
++            Amount: 125
++          - Index: 1
++            Item: ClockTower_Gear
++            Amount: 10
++          - Index: 2
++            Item: Fourth_1h_Plant
++            Amount: 1
++      - Index: 7
++        Item: Wicked_Edge
++        Stock: 0
++        Zeny: 0
++        RequiredItems:
++          - Index: 0
++            Item: ClockTower_Lead
++            Amount: 125
++          - Index: 1
++            Item: ClockTower_Gear
++            Amount: 10
++          - Index: 2
++            Item: Fourth_1h_Nindo2
++            Amount: 1
++  - Name: barter_clock_ub_precision
++    Items:
++      - Index: 0
++        Item: Precision_Lute
++        Stock: 0
++        Zeny: 0
++        RequiredItems:
++          - Index: 0
++            Item: ClockTower_Lead
++            Amount: 125
++          - Index: 1
++            Item: ClockTower_Gear
++            Amount: 10
++          - Index: 2
++            Item: Fourth_Bh_Lute
++            Amount: 1
++      - Index: 1
++        Item: Precision_Whip
++        Stock: 0
++        Zeny: 0
++        RequiredItems:
++          - Index: 0
++            Item: ClockTower_Lead
++            Amount: 125
++          - Index: 1
++            Item: ClockTower_Gear
++            Amount: 10
++          - Index: 2
++            Item: Fourth_1h_Whip
++            Amount: 1
++      - Index: 2
++        Item: Precision_Fist
++        Stock: 0
++        Zeny: 0
++        RequiredItems:
++          - Index: 0
++            Item: ClockTower_Lead
++            Amount: 125
++          - Index: 1
++            Item: ClockTower_Gear
++            Amount: 10
++          - Index: 2
++            Item: Fourth_1h_Knuckle
++            Amount: 1
++      - Index: 3
++        Item: Precision_Bow
++        Stock: 0
++        Zeny: 0
++        RequiredItems:
++          - Index: 0
++            Item: ClockTower_Lead
++            Amount: 125
++          - Index: 1
++            Item: ClockTower_Gear
++            Amount: 10
++          - Index: 2
++            Item: Fourth_Bh_Bow
++            Amount: 1
++      - Index: 4
++        Item: Precision_Pistol
++        Stock: 0
++        Zeny: 0
++        RequiredItems:
++          - Index: 0
++            Item: ClockTower_Lead
++            Amount: 125
++          - Index: 1
++            Item: ClockTower_Gear
++            Amount: 10
++          - Index: 2
++            Item: Fourth_Revolver
++            Amount: 1
++      - Index: 5
++        Item: Precision_Rifle
++        Stock: 0
++        Zeny: 0
++        RequiredItems:
++          - Index: 0
++            Item: ClockTower_Lead
++            Amount: 125
++          - Index: 1
++            Item: ClockTower_Gear
++            Amount: 10
++          - Index: 2
++            Item: Fourth_Rifle
++            Amount: 1
++      - Index: 6
++        Item: Precision_Shotgun
++        Stock: 0
++        Zeny: 0
++        RequiredItems:
++          - Index: 0
++            Item: ClockTower_Lead
++            Amount: 125
++          - Index: 1
++            Item: ClockTower_Gear
++            Amount: 10
++          - Index: 2
++            Item: Fourth_Shotgun
++            Amount: 1
++      - Index: 7
++        Item: Precision_Gatling
++        Stock: 0
++        Zeny: 0
++        RequiredItems:
++          - Index: 0
++            Item: ClockTower_Lead
++            Amount: 125
++          - Index: 1
++            Item: ClockTower_Gear
++            Amount: 10
++          - Index: 2
++            Item: Fourth_Gatling
++            Amount: 1
++      - Index: 8
++        Item: Precision_Grenade
++        Stock: 0
++        Zeny: 0
++        RequiredItems:
++          - Index: 0
++            Item: ClockTower_Lead
++            Amount: 125
++          - Index: 1
++            Item: ClockTower_Gear
++            Amount: 10
++          - Index: 2
++            Item: Fourth_Grenade
++            Amount: 1
++      - Index: 9
++        Item: Precision_Fuuma
++        Stock: 0
++        Zeny: 0
++        RequiredItems:
++          - Index: 0
++            Item: ClockTower_Lead
++            Amount: 125
++          - Index: 1
++            Item: ClockTower_Gear
++            Amount: 10
++          - Index: 2
++            Item: Fourth_Bh_Fuuma
++            Amount: 1
+diff --git a/npc/re/mobs/dungeons/c_tower.txt b/npc/re/mobs/dungeons/c_tower.txt
+index 97fd6aaa855..27c54b75c33 100644
+--- a/npc/re/mobs/dungeons/c_tower.txt
++++ b/npc/re/mobs/dungeons/c_tower.txt
+@@ -10,6 +10,7 @@
+ //= 1.0 Split from combined Alde and CT spawn file. [L0ne_W0lf]
+ //= 1.1 Added nightmare clock tower. [Ridley8819]
+ //= 1.2 Correct Spawn by Navigation's mob data. [attackjom]
++//= 1.3 Added Clock Tower Unknown Basement. [Capuche]
+ //============================================================
+ 
+ //==================================================
+@@ -71,3 +72,14 @@ c_tower3_,0,0	monster	Time Keeper	2918,2,5000
+ c_tower3_,0,0	monster	Owl Viscount	2921,3,5000,1800000
+ c_tower3_,0,0	monster	Owl Marquis	2923,3,5000,5000
+ c_tower3_,0,0,0,0	boss_monster	Time Holder	3074,1,7200000,0,0
++
++//==================================================
++// clock_01 - Clock Tower Unknown Basement
++//==================================================
++clock_01	monster	Extra Joker	20175,60
++clock_01	monster	Erzsebet	20176,75
++clock_01	monster	Jennifer	20177,55
++clock_01	monster	General Orc	20178,75
++clock_01	monster	Sieglouse	20179,70
++// unknown respawn timer
++clock_01	boss_monster	Goblin King	20118,1,7200000,600000,1
+diff --git a/npc/re/quests/clock_tower_unknown_basement.txt b/npc/re/quests/clock_tower_unknown_basement.txt
+new file mode 100644
+index 00000000000..4626ad94ad5
+--- /dev/null
++++ b/npc/re/quests/clock_tower_unknown_basement.txt
+@@ -0,0 +1,646 @@
++//===== rAthena Script =======================================
++//= Clock Tower Unknown Basement
++//===== Description: =========================================
++//= [Walkthrough Conversion]
++//--- NPCs quests for Clock Tower Unknown Basement
++//===== Changelog: ===========================================
++//= 1.0 First version. [Capuche]
++//============================================================
++
++c_tower1,243,202,4	script	Question Box#D240	4_NONMYSTCASE,{
++	if (BaseLevel < 240) {
++		mes "I don't think this is a box like this, but... it's a gorgeously wrapped box. Could it be a new Mimic?";
++		next;
++		mes "I want to touch it, but I don't think I'm strong enough to take responsibility for my actions yet. Let's promise later.";
++		close;
++	}
++	if (isbegin_quest(5971) == 0)
++		mes "I don't think this is a box like this, but... it's a gorgeously wrapped box. Could it be a new Mimic?";
++	else
++		mes "This is the box where the demon sleeps. Shall we wake him up?";
++	next;
++	if (select( "Touch it", "Leave it" ) == 2)
++		end;
++	emotion ET_GOODBOY;
++	setpcblock PCBLOCK_NPC, true;
++	sleep2 500;
++	specialeffect EF_PURPLEBODY;
++	sleep2 500;
++	setpcblock PCBLOCK_NPC, false;
++	cloakonnpcself();
++	cloakoffnpcself( "Demon in the Box#D240" );
++	npctalk "Demon in the Box: Who awakens this body?", "Demon in the Box#D240", bc_self;
++	end;
++}
++
++c_tower1,243,202,4	script	Demon in the Box#D240	VAVAYAGA,{
++	if (BaseLevel < 240)
++		end;
++	if (checkweight(1201,3) == 0) {
++		mes "- You cannot proceed because you have too many items. -";
++		close;
++	}
++	if (isbegin_quest(5971) == 0) {
++		mes "The guy who jumped out of the box glanced at me and started talking to himself as if it were natural.";
++		next;
++		mes "[Demon in the box]";
++		mes "Huh?! What is this? Where is this? This is...";
++		next;
++		mes "[Demon in the box]";
++		mes "Hmm.. This is.. Clock Tower? Is it? What matters is not where I was!";
++		next;
++		mes "[Demon in the box]";
++		mes "Hu~um~";
++		next;
++		mes "[Demon in the box]";
++		mes "Oh! A musty smell.. I can smell the place where I was from that spring. I have to go back.";
++		next;
++		emotion ET_THINK;
++		mes "[Demon in the box]";
++		mes ".. .. ..";
++		next;
++		emotion ET_HUK;
++		mes "[Demon in the box]";
++		mes "Ughhhh?! What? Why? Why can't I go in?";
++		while(1) {
++			next;
++			mes "Looks like you're in trouble. Shall we join in?";
++			next;
++			if (select( "Leave it as it is", "Help" ) == 2)
++				break;
++			mes "[Demon in the box]";
++			mes "No! It can't be like this. Judging from this strong smell, that's definitely where I came from!";
++			next;
++			mes "[Demon in the box]";
++			mes ".. .. ..";
++			next;
++			emotion ET_OTL;
++			mes "[Demon in the box]";
++			mes "Ouch! Why! Why not!";
++		}
++		emotion ET_HUK;
++		mes "[Demon in the box]";
++		mes "Keuk?! What? What? Do you see me?";
++		next;
++		mes "[" + strcharinfo(0) + "]";
++		mes "Looks good. By the way, I'm in trouble. Can I help you?";
++		next;
++		mes "The demon in the box looks very suspicious.";
++		next;
++		mes "[Demon in the box]";
++		mes "Okay... Mama said to be suspicious of all beings who try to do favors for no reason...";
++		next;
++		mes "[" + strcharinfo(0) + "]";
++		mes "That makes sense... you're well educated. But isn't that a bit odd for what the demon says?";
++		next;
++		mes "[Demon in the box]";
++		mes "Tch! You're treating a great demon like a kid in the middle of the day!";
++		next;
++		mes "[Demon in the box]";
++		mes "I'll give you a taste of the demon's curse!!";
++		next;
++		emotion ET_QUESTION;
++		mes "[Demon in the box]";
++		mes "?";
++		next;
++		emotion ET_QUESTION, playerattached();
++		mes "[" + strcharinfo(0) + "]";
++		mes "?";
++		next;
++		npctalk "Growl-..", "", bc_self;
++		mes "[" + strcharinfo(0) + "]";
++		mes "Are you hungry? Excuse me, what does the demon eat?";
++		next;
++		mes "[Demon in the box]";
++		mes "Keugh.. I'm embarrassed. If I wasn't hungry.. I'm sorry, but I'm a generous demon, should I get some help?";
++		next;
++		mes "[Demon in the box]";
++		mes "Whoops, don't be alarmed, this demon eats the dregs of a fresh soul";
++		next;
++		mes "[" + strcharinfo(0) + "]";
++		mes "I see. The remnants of a fresh soul... can I just get them from the place you came from?";
++		next;
++		mes "[Demon in the box]";
++		mes "Contrary to what it looks like, you're a quick-witted guy. When I recover my strength, I'll generously give you a taste of the weak curse.";
++		next;
++		mes "[" + strcharinfo(0) + "]";
++		mes "Yes, yes! You do that, and even the demon knows Give and Take, right?";
++		next;
++		mes "[Demon in the box]";
++		mes "Give and Take? Everything.. of course I know!";
++		next;
++		mes "[" + strcharinfo(0) + "]";
++		mes "You don't seem to know? No, it's a clever demon! Of course you understand. Then, would you like to ask me appropriately?";
++		next;
++		mes "[Demon in the box]";
++		mes "Okay. Give and Take. I'm a smart demon, so of course I know!";
++		next;
++		setquest 5971;
++		completequest 5971;
++		emotion ET_FRET;
++		mes "[Demon in the box]";
++		mes "You wretch! Talk to me again and take that request from me!";
++		close;
++	}
++
++	setpcblock PCBLOCK_NPC, true;
++
++	.@playtime_5961 = checkquest(5961,PLAYTIME);
++	.@playtime_5965 = checkquest(5965,PLAYTIME);
++	.@playtime_5967 = checkquest(5967,PLAYTIME);
++	.@playtime_5968 = checkquest(5968,PLAYTIME);
++
++	// playtime checks
++	if (.@playtime_5961 == 2) {
++		erasequest 5961;
++		.@playtime_5961 = -1;
++		sleep2 300;
++		npctalk "Demon: Feeder! It's time to eat!", "Demon in the Box#D240", bc_self;
++	}
++	if (.@playtime_5965 == 2) {
++		erasequest 5965;
++		.@playtime_5965 = -1;
++		npctalk "Demon: Come to think of it, it's time for a special meal.", "Demon in the Box#D240", bc_self;
++	}
++	if (.@playtime_5967 == 2) {
++		erasequest 5967;
++		.@playtime_5967 = -1;
++		sleep2 300;
++		npctalk "Demon: Meals and snacks are important.", "Demon in the Box#D240", bc_self;
++	}
++	if (.@playtime_5968 == 2) {
++		erasequest 5968;
++		.@playtime_5968 = -1;
++		sleep2 300;
++		npctalk "Demon: I'll be in trouble if I forget my pet Mimic's meal!", "Demon in the Box#D240", bc_self;
++	}
++
++	// hunting checks
++	if (checkquest(5962,HUNTING) == 2) {
++		erasequest 5962;
++		setquest 5961;
++		getitem 1000680,1;	// ClockTower_Lead
++		getexp 38409074,25606020;
++		npctalk "Demon: Is this for today's meal? I'll be sincere and eat it.", "", bc_self;
++	}
++	if (checkquest(5963,HUNTING) == 2) {
++		erasequest 5963;
++		setquest 5961;
++		getitem 1000680,3;	// ClockTower_Lead
++		getexp 136177626,90784980;
++		npctalk "Demon: Is this for today's meal? I'll be sincere and eat it.", "", bc_self;
++	}
++	if (checkquest(5964,HUNTING) == 2) {
++		erasequest 5964;
++		setquest 5961;
++		getitem 1000680,10;	// ClockTower_Lead
++		getexp 698346800,465564000;
++		npctalk "Demon: Is this for today's meal? I'll be sincere and eat it.", "", bc_self;
++	}
++	if (checkquest(5966,HUNTING) == 2) {
++		erasequest 5966;
++		setquest 5965;
++		getitem 1000681,3;	// ClockTower_Gear
++		getexp 2182333750,1454887500;
++		npctalk "Demon: Ooh Meal + Special Meal? Someone who knows something.", "", bc_self;
++	}
++	if (isbegin_quest(5970) == 1) {
++		erasequest 5970;
++		setquest 5968;
++		getexp 1745867,1163910;
++		npctalk "Demon: Did you feed Mimic while you were preparing the meal? You seem to value efficiency.", "", bc_self;
++	}
++
++	switch( rand(8) ) {
++	case 0:
++		unittalk getcharid(3), "" + strcharinfo(0) + " : Why does it change every day?", bc_self;
++		sleep2 500;
++		npctalk "Demon: What are you talking about? I look like a nice demon every day. Yesterday, today, and tomorrow I am a nice demon.", "", bc_self;
++		sleep2 500;
++		unittalk getcharid(3), "" + strcharinfo(0) + " : Uh.. yes.. It turns out that you don't even know..", bc_self;
++		break;
++	case 1:
++		unittalk getcharid(3), "" + strcharinfo(0) + " : Why did you cancel the weapon exchange?", bc_self;
++		sleep2 500;
++		npctalk "Demon: This is my heart. Weapon exchange!", "", bc_self;
++		sleep2 500;
++		unittalk getcharid(3), "" + strcharinfo(0) + " : well... that's right...", bc_self;
++		sleep2 500;
++		npctalk "Demon: According to the demon data, they tend not to press the button that says cancel.", "", bc_self;
++		break;
++	case 2:
++		unittalk getcharid(3), "" + strcharinfo(0) + " : What are the free lead and cogs?", bc_self;
++		sleep2 500;
++		npctalk "Demon: I don't know. There are a lot of them in the box I'm in. I'm throwing away bit by bit to make the box wider.", "", bc_self;
++		break;
++	case 3:
++		unittalk getcharid(3), "" + strcharinfo(0) + " : Speaking of which, what's your name?", bc_self;
++		sleep2 500;
++		npctalk "Demon: Have you ever thought to ask the great demon's name? My name is Pakazmucci!", "", bc_self;
++		sleep2 500;
++		unittalk getcharid(3), "" + strcharinfo(0) + " : Difficult?! I'll just call you the demon...", bc_self;
++		sleep2 500;
++		npctalk "Demon: $%^#$#%#$ Worse than this demon!", "", bc_self;
++		break;
++	case 4:
++		npctalk "Demon: It's weird, I feel like I'm being tricked...", "", bc_self;
++		sleep2 500;
++		unittalk getcharid(3), "" + strcharinfo(0) + " : I'm in the mood.", bc_self;
++		break;
++	case 5:
++		unittalk getcharid(3), "" + strcharinfo(0) + " : Where did you get the exchanged weapon?", bc_self;
++		sleep2 500;
++		npctalk "Demon: This is a secret, but if you put lead and cogwheels in the box, there is a vending machine with weapons.", "", bc_self;
++		sleep2 500;
++		npctalk "Demon: The generous demon is a nuisance, but it's in service, thank you!", "", bc_self;
++		sleep2 500;
++		unittalk getcharid(3), "" + strcharinfo(0) + " : ah.. yes.. thank you so much", bc_self;
++		break;
++	case 6:
++		unittalk getcharid(3), "" + strcharinfo(0) + " : How did you get into the box?", bc_self;
++		sleep2 500;
++		npctalk "Demon: You stupid. Would you stay here if I knew that?", "", bc_self;
++		sleep2 500;
++		unittalk getcharid(3), "" + strcharinfo(0) + " : that's it..", bc_self;
++		break;
++	case 7:
++		unittalk getcharid(3), "" + strcharinfo(0) + " : how did you get a pet mimic?", bc_self;
++		sleep2 500;
++		npctalk "Demon: I picked it up while playing. I grew it because it ate well.", "", bc_self;
++		sleep2 500;
++		unittalk getcharid(3), "" + strcharinfo(0) + " : the demon is nice.", bc_self;
++		sleep2 500;
++		npctalk "Demon: Why are you suddenly swearing at me for what I've done? He's worse than a demon anyway.", "", bc_self;
++		break;
++	}
++	setpcblock PCBLOCK_NPC, false;
++
++	mes "[Demon in the box]";
++	mes "I am a generous and forgiving demon";
++	next;
++	switch( select( "[Daily] Demon's Meal", "[Daily] Demon's Pet Mimic", "[Daily] Demon's Snack", "[Weekly] Demon's Meal", "Cancel" ) ) {
++	case 1:
++		switch( .@playtime_5961 ) {
++		case -1:
++			break;
++		case 0:
++		case 1:
++			emotion ET_FRET;
++			mes "[Demon in the box]";
++			mes "No matter how hungry I am, two meals at a time is too much";
++			close;
++		case 2:
++			end;	// shouldn't happen
++		}
++		if (isbegin_quest(5962) == 1 || isbegin_quest(5963) == 1 || isbegin_quest(5964) == 1) {
++			mes "[Demon in the box]";
++			mes "What are you doing here right now? Don't go quickly and bring me food? It's slow and burst.";
++			close;
++		}
++		mes "[Demon in the box]";
++		mes "If you defeat the monster in there, you can get the remnants of the soul. Heck, that's my precious food. How much remnants will you bring me as an offering!";
++		next;
++		switch( select( "Demon's Breakfast - Hunt 100", "Demon's Lunch - Hunt 300", "Demon's Dinner - Hunt 1000", "Just starve!" ) ) {
++		case 1:
++			setquest 5962;
++			mes "[Demon in the box]";
++			mes "This is about the size of breakfast..";
++			mes "Eat lightly and something is good. Hurry up and grab it!";
++			close;
++		case 2:
++			setquest 5963;
++			mes "[Demon in the box]";
++			mes "This is about the size of lunch..";
++			mes "A little full is just right for lunch. Hurry up and grab it!";
++			close;
++		case 3:
++			setquest 5964;
++			mes "[Demon in the box]";
++			mes "This is about the size of dinner..";
++			mes "Even if you have a good dinner, you won't be able to sleep well. Hurry up and grab it!";
++			close;
++		case 4:
++			emotion ET_ANGER;
++			mes "[Demon in the box]";
++			mes "Aaah! It's mean to eat!";
++			close;
++		}
++		end;
++	case 2:
++		switch( .@playtime_5968 ) {
++		case -1:
++			break;
++		case 0:
++		case 1:
++			mes "[Demon in the box]";
++			mes "I'm relieved to hear that my pet Mimic is all right. If you're not busy, take care of him tomorrow.";
++			close;
++		case 2:
++			end;	// shouldn't happen
++		}
++		if (isbegin_quest(5969) == 1) {
++			mes "[Demon in the box]";
++			mes "My poor Mimic must be wandering around inside me, trembling with fear. Ego, poor guy. He met the wrong owner...";
++			close;
++		}
++		mes "[Demon in the box]";
++		mes "I'm worried that my pet Mimic is alone in there. Did you eat well? Is anyone bothering you?";
++		next;
++		mes "[Demon in the box]";
++		mes "I'll give him something to eat, so can you go and get some?";
++		next;
++		if (select( "So what?", "It's annoying." ) == 2) {
++			mes "[Demon in the box]";
++			mes "Aagh! This bloodless, tearless bastard!!! Didn't you feel sorry for my pet Mimic!";
++			close;
++		}
++		setquest 5969;
++		mes "[Demon in the box]";
++		mes "My poor Mimic will be wandering all over the place, trembling with fear. Feed him this so he doesn't go hungry.";
++		close;
++	case 3:
++		switch( .@playtime_5967 ) {
++		case -1:
++			break;
++		case 0:
++		case 1:
++			emotion ET_FRET;
++			mes "[Demon in the box]";
++			mes "Haven't you already packed today's snacks? Are you trying to make me a pig demon? Unfortunately, I'll refuse.";
++			close;
++		case 2:
++			end;	// shouldn't happen
++		}
++		mes "[Demon in the box]";
++		mes "How can a demon live on rice? Sometimes he needs to eat snacks too.";
++		next;
++		switch( gettime(DT_DAYOFWEEK) ) {
++		case MONDAY:
++		case THURSDAY:
++			.@item_id = 25506;	// Cute_Broom
++			break;
++		case WEDNESDAY:
++		case SUNDAY:
++			.@item_id = 25507;	// Showy_Coral_Reef
++			break;
++		case TUESDAY:
++		case FRIDAY:
++			.@item_id = 25505;	// Jokers_Wild
++			break;
++		case SATURDAY:
++			.@item_id = 25509;	// Shining_Round_Shell
++			break;
++		}
++		if (countitem(.@item_id) < 100) {
++			switch( .@item_id ) {
++			case 25505:	// Jokers_Wild
++				mes "[Demon in the box]";
++				mes "So today's snack is " + mesitemlink(.@item_id) + " would be nice.";
++				next;
++				mes "[" + strcharinfo(0) + "]";
++				mes "Huh? Isn't this a card? Does the demon eat cards too?";
++				next;
++				mes "[Demon in the box]";
++				mes "You are curious about useless things, useless curiosity only hastens people!";
++				next;
++				mes "[Demon in the box]";
++				mes "If you bring me 100 " + mesitemlink(.@item_id) + ", I'll make myself a snack." ;
++				close;
++			case 25506:	// Cute_Broom
++				mes "[Demon in the box]";
++				mes "So today's snack is " + mesitemlink(.@item_id) + " would be nice.";
++				next;
++				mes "[" + strcharinfo(0) + "]";
++				mes "Huh? Eat a broom?";
++				next;
++				mes "[Demon in the box]";
++				mes "If you take off the stick part and use it for firewood, and fry the remaining part and eat it, there's nothing special in the world.";
++				next;
++				mes "[Demon in the box]";
++				mes "If you bring me 100 " + mesitemlink(.@item_id) + ", I'll treat you to snacks." ;
++				close;
++			case 25507:	// Showy_Coral_Reef
++				mes "[Demon in the box]";
++				mes "So today's snack is " + mesitemlink(.@item_id) + " would be nice.";
++				next;
++				mes "[" + strcharinfo(0) + "]";
++				mes "Still, do you think we can eat today?";
++				next;
++				mes "[Demon in the box]";
++				mes "Oh, you guys seem to be eating coral too. I thought you didn't even know the taste, but you know how to enjoy the taste quite a bit, don't you?";
++				next;
++				mes "[Demon in the box]";
++				mes "Bring 100 " + mesitemlink(.@item_id) + ", I will personally eat it as a snack.";
++				close;
++			case 25509:	// Shining_Round_Shell
++				mes "[Demon in the box]";
++				mes "How can a demon live on rice? Sometimes he needs to eat snacks too.";
++				next;
++				mes "[Demon in the box]";
++				mes "So today's snack is " + mesitemlink(.@item_id) + " would be nice.";
++				next;
++				mes "[" + strcharinfo(0) + "]";
++				mes "Isn't it a bit stiff?";
++				next;
++				mes "[Demon in the box]";
++				mes "Oops, oops... it's like they don't know the taste... Well, beings with weak teeth like you might find it hard to eat. I couldn't figure it out.";
++				next;
++				mes "[Demon in the box]";
++				mes "But! Isn't that something you eat? Bring me 100 " + mesitemlink(.@item_id) + ". I will personally eat it as a snack.";
++				close;
++			}
++			end;
++		}
++		mes "[Demon in the box]";
++		mes "Ooh Did you get " + mesitemlink(.@item_id) + "?";
++		next;
++		if (select( "Yes, it's yours", "It's not yours" ) == 2) {
++			mes "[Demon in the box]";
++			mes "He's worse than the demon.";
++			close;
++		}
++		delitem .@item_id,100;
++		setquest 5967;
++		mes "[Demon in the box]";
++		mes "Today, I'm going to take a look at the sincerity of bringing snacks, so let's eat them specially.";
++		close;
++	case 4:
++		switch( .@playtime_5965 ) {
++		case -1:
++			break;
++		case 0:
++		case 1:
++			mes "[Demon in the box]";
++			mes "I'm a generous demon, so I'm content with a special meal once a week.";
++			close;
++		case 2:
++			end;	// shouldn't happen
++		}
++		if (isbegin_quest(5966) == 1) {
++			mes "[Demon in the box]";
++			mes "Whoops, it's a special meal if you eat it occasionally! If you eat it often, it's not a special meal!";
++			close;
++		}
++		mes "[Demon in the box]";
++		mes "He who feeds me, don't you think I need a special meal once a week?";
++		next;
++		if (select( "Okay. I'll prepare that special meal for you!", "It's annoying." ) == 2) {
++			mes "[Demon in the box]";
++			mes "These days, the devils are having a serious job shortage, so there must be a reason.";
++			close;
++		}
++		setquest 5966;
++		mes "[Demon in the box]";
++		mes "Okay! Looking forward to that special!";
++		close;
++	case 5:
++		setpcblock PCBLOCK_NPC, true;
++		switch( rand(4) ) {
++		case 0:
++			npctalk "Demon: Shhh!! Did you bother to notice in the end?", "", bc_self;
++			sleep2 500;
++			npctalk "Demon: Well, I ask you to feed me, so I'll press the button that says solid.", "", bc_self;
++			callshop "barter_clock_ub_solid";
++			break;
++		case 1:
++			npctalk "Demon: Shhh!! Did you bother to notice in the end?", "", bc_self;
++			sleep2 500;
++			npctalk "Demon: Oh, I've been wanting to press the button that says precision.", "", bc_self;
++			callshop "barter_clock_ub_precision";
++			break;
++		case 2:
++			npctalk "Demon: Shhh!! Did you bother to notice in the end?", "", bc_self;
++			sleep2 500;
++			npctalk "Demon: Just wanted to press the button with Wicked on it, so why don't you take a look?", "", bc_self;
++			callshop "barter_clock_ub_wicked";
++			break;
++		case 3:
++			npctalk "Demon: Shhh!! Did you bother to notice in the end?", "", bc_self;
++			sleep2 500;
++			npctalk "Demon: Great!! I just wanted to press this button...", "", bc_self;
++			callshop "barter_clock_ub_gear";
++			break;
++		}
++		setpcblock PCBLOCK_NPC, false;
++		end;
++	}
++	end;
++
++OnHour04:
++	// (the NPC sprite seems to change as follows)
++	switch( gettime(DT_DAYOFWEEK) ) {
++	case MONDAY:
++	case THURSDAY:
++		setnpcdisplay( strnpcinfo(0), 1882 );	// VAVAYAGA
++		break;
++	case WEDNESDAY:
++	case SUNDAY:
++		setnpcdisplay( strnpcinfo(0), 1883 );	// UZHAS
++		break;
++	case TUESDAY:
++	case FRIDAY:
++		setnpcdisplay( strnpcinfo(0), 1261 );	// WILD_ROSE
++		break;
++	case SATURDAY:
++		setnpcdisplay( strnpcinfo(0), 2155 );	// BUTOIJO
++		break;
++	}
++	end;
++
++OnInit:
++	cloakonnpc();
++	questinfo( QTYPE_QUEST2, QMARK_YELLOW, "BaseLevel >= 240 && isbegin_quest(5971) == 0" );
++
++	// TODO: re-check qi
++	questinfo( QTYPE_DAILYQUEST, QMARK_YELLOW, "checkquest(5961,PLAYTIME) == 2" );
++	questinfo( QTYPE_DAILYQUEST, QMARK_YELLOW, "checkquest(5965,PLAYTIME) == 2" );
++	questinfo( QTYPE_DAILYQUEST, QMARK_YELLOW, "checkquest(5967,PLAYTIME) == 2" );
++	questinfo( QTYPE_DAILYQUEST, QMARK_YELLOW, "checkquest(5968,PLAYTIME) == 2" );
++
++	questinfo( QTYPE_DAILYQUEST, QMARK_YELLOW, "(isbegin_quest(5962) == 0 || isbegin_quest(5963) == 0 || isbegin_quest(5964) == 0) && checkquest(5961,PLAYTIME) == -1" );
++	questinfo( QTYPE_DAILYQUEST, QMARK_YELLOW, "isbegin_quest(5969) == 0 && checkquest(5965,PLAYTIME) == -1" );
++	// questinfo( QTYPE_DAILYQUEST, QMARK_YELLOW, "checkquest(5967,PLAYTIME) == -1" );
++	questinfo( QTYPE_DAILYQUEST, QMARK_YELLOW, "isbegin_quest(5966) == 0 && checkquest(5968,PLAYTIME) == -1" );
++
++	questinfo( QTYPE_QUEST2, QMARK_YELLOW, "checkquest(5962,HUNTING) == 2" );
++	questinfo( QTYPE_QUEST2, QMARK_YELLOW, "checkquest(5963,HUNTING) == 2" );
++	questinfo( QTYPE_QUEST2, QMARK_YELLOW, "checkquest(5964,HUNTING) == 2" );
++	questinfo( QTYPE_QUEST2, QMARK_YELLOW, "isbegin_quest(5970) == 1" );
++	questinfo( QTYPE_QUEST2, QMARK_YELLOW, "checkquest(5966,HUNTING) == 2" );
++
++	donpcevent strnpcinfo(0) + "::OnHour04";
++	end;
++}
++
++c_tower1,246,197,4	script	Giant Spring#D240	HIDDEN_NPC,{
++	if (BaseLevel < 240) {
++		unittalk getcharid(3), "" + strcharinfo(0) + " : The spring is firmly fixed and does not move, perhaps rusted.", bc_self;
++		end;
++	}
++	mes "It's a huge spring.";
++	mes "It seems to be able to move if it is moved with force.";
++	next;
++	switch( select( "Turn right", "Turn left" ) ) {
++	case 1:
++		unittalk getcharid(3), "" + strcharinfo(0) + " : Let's struggle to turn the mainspring to the right. Somewhere...", bc_self;
++		warp "clock_01",84,44;
++		end;
++	case 2:
++		unittalk getcharid(3), "" + strcharinfo(0) + " : Let's struggle to turn the mainspring to the left. Somewhere...", bc_self;
++		warp "clock_01",24,162;
++		end;
++	}
++	end;
++}
++
++clock_01,79,39,0	warp2	clock_01_Out_c_tower1	2,2,c_tower1,241,200
++
++
++clock_01,1,1,8	script	clock_ub_random_mimic	-1,{
++	end;
++OnInit:
++	for ( .@i = 0; .@i < 10; ++.@i )
++		disablenpc "Pet Mimic#D240_" + .@i;
++	enablenpc "Pet Mimic#D240_" + rand(10);
++	end;
++}
++
++clock_01,77,79,8	script	Pet Mimic#D240_0	4_MIMIC,{// 508
++	if (BaseLevel < 240)
++		end;
++	if (!.npc_change)
++		donpcevent "clock_ub_random_mimic::OnRand";	// enabled the NPC independently of the player
++
++	setpcblock PCBLOCK_NPC, true;
++	unittalk getcharid(3), "" + strcharinfo(0) + " : A pet mimic that the demon outside the dungeon asked to take care of.", bc_self;
++	erasequest 5969;
++	sleep2 500;
++	specialeffect2 EF_BASH;
++	setquest 5970;
++	sleep2 500;
++	unittalk getcharid(3), "" + strcharinfo(0) + " : Well... I took the food, so it's no problem, right?", bc_self;
++	setpcblock PCBLOCK_NPC, false;
++	end;
++
++OnRand:
++	.npc_change = true;
++	initnpctimer;
++	end;
++OnTimer500:
++	disablenpc();
++	end;
++OnTimer1000:
++	.npc_change = false;
++	stopnpctimer;
++	enablenpc "Pet Mimic#D240_" + rand(10);
++	end;
++}
++clock_01,267,180,2	duplicate(Pet Mimic#D240_0)	Pet Mimic#D240_1	4_MIMIC
++clock_01,244,198,4	duplicate(Pet Mimic#D240_0)	Pet Mimic#D240_2	4_MIMIC
++clock_01,136,143,2	duplicate(Pet Mimic#D240_0)	Pet Mimic#D240_3	4_MIMIC
++clock_01,110,173,2	duplicate(Pet Mimic#D240_0)	Pet Mimic#D240_4	4_MIMIC
++clock_01,195,269,8	duplicate(Pet Mimic#D240_0)	Pet Mimic#D240_5	4_MIMIC
++clock_01,111,259,8	duplicate(Pet Mimic#D240_0)	Pet Mimic#D240_6	4_MIMIC
++clock_01,37,221,2	duplicate(Pet Mimic#D240_0)	Pet Mimic#D240_7	4_MIMIC
++clock_01,20,158,4	duplicate(Pet Mimic#D240_0)	Pet Mimic#D240_8	4_MIMIC
++clock_01,37,70,6	duplicate(Pet Mimic#D240_0)	Pet Mimic#D240_9	4_MIMIC
+diff --git a/npc/re/scripts_athena.conf b/npc/re/scripts_athena.conf
+index b034bf61469..448b1dcc7dd 100644
+--- a/npc/re/scripts_athena.conf
++++ b/npc/re/scripts_athena.conf
+@@ -206,6 +206,7 @@ npc: npc/re/quests/newgears/2012_headgears.txt
+ npc: npc/re/quests/seals/brisingamen_seal.txt
+ npc: npc/re/quests/seals/megingard_seal.txt
+ // --------------------------------------------------------------
++npc: npc/re/quests/clock_tower_unknown_basement.txt
+ npc: npc/re/quests/cooking_quest.txt
+ //npc: npc/re/quests/cupet.txt
+ npc: npc/re/quests/HelpMeShorty.txt
+
+From 6f599b4cb59dfcc952a69dfda800b471076cd83e Mon Sep 17 00:00:00 2001
+From: Atemo <capucrath@gmail.com>
+Date: Wed, 8 Mar 2023 17:43:13 +0100
+Subject: [PATCH 2/3] Monsters skills (from playing) Questinfo updated
+
+---
+ db/re/mob_db.yml                              |  6 ++
+ db/re/mob_skill_db.txt                        | 34 ++++++++++
+ .../quests/clock_tower_unknown_basement.txt   | 63 ++++++++++++-------
+ 3 files changed, 80 insertions(+), 23 deletions(-)
+
+diff --git a/db/re/mob_db.yml b/db/re/mob_db.yml
+index e8d64db0526..0afb68002f3 100644
+--- a/db/re/mob_db.yml
++++ b/db/re/mob_db.yml
+@@ -93585,6 +93585,8 @@ Body:
+     AttackMotion: 864
+     DamageMotion: 432
+     Ai: 04  # TODO
++    Modes:
++      Detector: true
+     Drops:
+       - Item: Zargon
+         Rate: 5000
+@@ -93631,6 +93633,8 @@ Body:
+     AttackMotion: 840
+     DamageMotion: 900
+     Ai: 04  # TODO
++    Modes:
++      Detector: true
+     Drops:
+       - Item: Star_Crumb
+         Rate: 75
+@@ -93762,6 +93766,8 @@ Body:
+     AttackMotion: 500
+     DamageMotion: 480
+     Ai: 04  # TODO
++    Modes:
++      Detector: true
+     Drops:
+       - Item: Round_Shell
+         Rate: 8750
+diff --git a/db/re/mob_skill_db.txt b/db/re/mob_skill_db.txt
+index b8b9f761cfa..c79bdd9374d 100644
+--- a/db/re/mob_skill_db.txt
++++ b/db/re/mob_skill_db.txt
+@@ -12936,6 +12936,40 @@
+ 3816,MD_MARIN@AL_HEAL,idle,28,1,10000,500,5000,yes,friend,myhpltmaxrate,90,,,,,,2,
+ 3816,MD_MARIN@AL_HEAL,attack,28,1,10000,500,5000,yes,friend,myhpltmaxrate,90,,,,,,,69
+ 
++// Clock tower unknown basement (custom data)
++20175,EXTRA_JOKER@NPC_MENTALBREAKER,159,1,2000,0,10000,no,target,always,0,,,,,,,
++20175,EXTRA_JOKER@NPC_GROUNDATTACK,185,1,2000,0,10000,no,target,always,0,,,,,,,
++20175,EXTRA_JOKER@MG_LIGHTNINGBOLT,20,5,2000,0,10000,no,target,always,0,,,,,,,
++20175,EXTRA_JOKER@NPC_WINDATTACK,187,1,2000,0,10000,no,target,always,0,,,,,,,
++20175,EXTRA_JOKER@MG_COLDBOLT,14,5,2000,0,10000,no,target,always,0,,,,,,,
++20175,EXTRA_JOKER@NPC_ATTRICHANGE,161,1,2000,0,10000,no,self,always,0,,,,,,,
++20175,EXTRA_JOKER@NPC_FIREATTACK,186,1,2000,0,10000,no,target,always,0,,,,,,,
++20175,EXTRA_JOKER@WZ_QUAGMIRE,92,1,2000,0,10000,no,target,always,0,,,,,,,
++20175,EXTRA_JOKER@MG_FIREBOLT,19,5,2000,0,10000,no,target,always,0,,,,,,,
++20176,ERZSEBET@NPC_DARKSTRIKE,340,1,2000,0,10000,no,target,always,0,,,,,,,
++20176,ERZSEBET@MG_SOULSTRIKE,13,1,2000,0,10000,no,target,always,0,,,,,,,
++20176,ERZSEBET@NPC_SILENCEATTACK,178,1,2000,0,10000,no,target,always,0,,,,,,,
++20176,ERZSEBET@NPC_DARKNESSATTACK,190,1,2000,0,10000,no,target,always,0,,,,,,,
++20176,ERZSEBET@NPC_CURSEATTACK,181,1,2000,0,10000,no,target,always,0,,,,,,,
++20176,ERZSEBET@HW_NAPALMVULCAN,400,1,2000,500,10000,no,target,always,0,,,,,,,
++// 20177,JENIFFER@NPC_ALL_STAT_DOWN,751,3,2000,0,10000,no,target,always,0,,,,,,,
++20177,JENIFFER@NPC_GUIDEDATTACK,172,1,2000,0,10000,no,target,always,0,,,,,,,
++20177,JENIFFER@NPC_POISONATTACK,188,1,2000,0,10000,no,target,always,0,,,,,,,
++20177,JENIFFER@NPC_COMBOATTACK,171,1,2000,0,10000,no,target,always,0,,,,,,,
++20177,JENIFFER@NPC_BLOODDRAIN,199,1,2000,0,10000,no,target,always,0,,,,,,,
++20178,GENERAL_ORC@NPC_SMOKING,195,1,2000,0,10000,no,self,always,0,,,,,,,
++// 20178,GENERAL_ORC@NPC_DEADLYCURSE,776,1,2000,0,10000,no,target,always,0,,,,,,,
++20178,GENERAL_ORC@LK_SPIRALPIERCE,397,1,2000,0,10000,no,target,always,0,,,,,,,
++20178,GENERAL_ORC@CR_SHIELDCHARGE,250,1,2000,0,10000,no,target,always,0,,,,,,,
++20178,GENERAL_ORC@NPC_FIREATTACK,186,1,2000,0,10000,no,target,always,0,,,,,,,
++20178,GENERAL_ORC@NPC_PULSESTRIKE,661,1,2000,0,10000,no,self,always,0,,,,,,,
++20178,GENERAL_ORC@NPC_GUIDEDATTACK,172,1,2000,0,10000,no,target,always,0,,,,,,,
++// 20179,SIEGLOUSE@NPC_GRADUAL_GRAVITY,752,1,2000,0,10000,no,target,always,0,,,,,,,
++20179,SIEGLOUSE@NPC_CRITICALSLASH,170,1,2000,0,10000,no,target,always,0,,,,,,,
++20179,SIEGLOUSE@NPC_GROUNDATTACK,185,1,2000,0,10000,no,target,always,0,,,,,,,
++20179,SIEGLOUSE@NPC_GUIDEDATTACK,172,1,2000,0,10000,no,target,always,0,,,,,,,
++20179,SIEGLOUSE@WZ_HEAVENDRIVE,91,1,2000,500,10000,no,target,always,0,,,,,,,
++
+ // Episode 17.1 - Illusion (custom) #!todo
+ 20340,EL-A17T@NPC_AGIUP,chase,350,5,2000,0,60000,no,self,always,0,,,,,,6,
+ 20340,EL-A17T@NPC_POWERUP,attack,349,5,2000,0,60000,no,self,always,0,,,,,,6,
+diff --git a/npc/re/quests/clock_tower_unknown_basement.txt b/npc/re/quests/clock_tower_unknown_basement.txt
+index 4626ad94ad5..6a300cce591 100644
+--- a/npc/re/quests/clock_tower_unknown_basement.txt
++++ b/npc/re/quests/clock_tower_unknown_basement.txt
+@@ -378,17 +378,25 @@ c_tower1,243,202,4	script	Demon in the Box#D240	VAVAYAGA,{
+ 		case MONDAY:
+ 		case THURSDAY:
+ 			.@item_id = 25506;	// Cute_Broom
++			.@exp = 279337600;
++			.@jexp = 186224800;
+ 			break;
+ 		case WEDNESDAY:
+ 		case SUNDAY:
+ 			.@item_id = 25507;	// Showy_Coral_Reef
++			.@exp = 347798000;
++			.@jexp = 231865000;
+ 			break;
+ 		case TUESDAY:
+ 		case FRIDAY:
+ 			.@item_id = 25505;	// Jokers_Wild
++			.@exp = 280442400;
++			.@jexp = 186961600;
+ 			break;
+ 		case SATURDAY:
+ 			.@item_id = 25509;	// Shining_Round_Shell
++			.@exp = 347798000;
++			.@jexp = 231865000;
+ 			break;
+ 		}
+ 		if (countitem(.@item_id) < 100) {
+@@ -461,6 +469,7 @@ c_tower1,243,202,4	script	Demon in the Box#D240	VAVAYAGA,{
+ 		}
+ 		delitem .@item_id,100;
+ 		setquest 5967;
++		getexp .@exp, .@jexp;
+ 		mes "[Demon in the box]";
+ 		mes "Today, I'm going to take a look at the sincerity of bringing snacks, so let's eat them specially.";
+ 		close;
+@@ -549,25 +558,25 @@ OnHour04:
+ 
+ OnInit:
+ 	cloakonnpc();
+-	questinfo( QTYPE_QUEST2, QMARK_YELLOW, "BaseLevel >= 240 && isbegin_quest(5971) == 0" );
+-
+-	// TODO: re-check qi
+-	questinfo( QTYPE_DAILYQUEST, QMARK_YELLOW, "checkquest(5961,PLAYTIME) == 2" );
+-	questinfo( QTYPE_DAILYQUEST, QMARK_YELLOW, "checkquest(5965,PLAYTIME) == 2" );
+-	questinfo( QTYPE_DAILYQUEST, QMARK_YELLOW, "checkquest(5967,PLAYTIME) == 2" );
+-	questinfo( QTYPE_DAILYQUEST, QMARK_YELLOW, "checkquest(5968,PLAYTIME) == 2" );
+-
+-	questinfo( QTYPE_DAILYQUEST, QMARK_YELLOW, "(isbegin_quest(5962) == 0 || isbegin_quest(5963) == 0 || isbegin_quest(5964) == 0) && checkquest(5961,PLAYTIME) == -1" );
+-	questinfo( QTYPE_DAILYQUEST, QMARK_YELLOW, "isbegin_quest(5969) == 0 && checkquest(5965,PLAYTIME) == -1" );
+-	// questinfo( QTYPE_DAILYQUEST, QMARK_YELLOW, "checkquest(5967,PLAYTIME) == -1" );
+-	questinfo( QTYPE_DAILYQUEST, QMARK_YELLOW, "isbegin_quest(5966) == 0 && checkquest(5968,PLAYTIME) == -1" );
++	questinfo( QTYPE_QUEST, QMARK_YELLOW, "BaseLevel >= 240 && isbegin_quest(5971) == 0" );
+ 
++	// note: no questinfo for item gathering quests completed
+ 	questinfo( QTYPE_QUEST2, QMARK_YELLOW, "checkquest(5962,HUNTING) == 2" );
+ 	questinfo( QTYPE_QUEST2, QMARK_YELLOW, "checkquest(5963,HUNTING) == 2" );
+ 	questinfo( QTYPE_QUEST2, QMARK_YELLOW, "checkquest(5964,HUNTING) == 2" );
+ 	questinfo( QTYPE_QUEST2, QMARK_YELLOW, "isbegin_quest(5970) == 1" );
+ 	questinfo( QTYPE_QUEST2, QMARK_YELLOW, "checkquest(5966,HUNTING) == 2" );
+ 
++	questinfo( QTYPE_DAILYQUEST, QMARK_YELLOW, "checkquest(5961,PLAYTIME) == 2" );
++	questinfo( QTYPE_DAILYQUEST, QMARK_YELLOW, "checkquest(5965,PLAYTIME) == 2" );
++	questinfo( QTYPE_DAILYQUEST, QMARK_YELLOW, "checkquest(5967,PLAYTIME) == 2" );
++	questinfo( QTYPE_DAILYQUEST, QMARK_YELLOW, "checkquest(5968,PLAYTIME) == 2" );
++
++	questinfo( QTYPE_DAILYQUEST, QMARK_YELLOW, "isbegin_quest(5971) == 2 && (isbegin_quest(5962) == 0 || isbegin_quest(5963) == 0 || isbegin_quest(5964) == 0 || isbegin_quest(5966) == 0) && checkquest(5961,PLAYTIME) == -1" );
++	questinfo( QTYPE_DAILYQUEST, QMARK_YELLOW, "isbegin_quest(5971) == 2 && isbegin_quest(5969) == 0 && isbegin_quest(5970) == 0 && checkquest(5965,PLAYTIME) == -1" );
++	questinfo( QTYPE_DAILYQUEST, QMARK_YELLOW, "isbegin_quest(5971) == 2 && isbegin_quest(5966) == 0 && checkquest(5968,PLAYTIME) == -1" );
++	// note: no questinfo for item gathering quests PLAYTIME -1
++
+ 	donpcevent strnpcinfo(0) + "::OnHour04";
+ 	end;
+ }
+@@ -608,18 +617,26 @@ OnInit:
+ clock_01,77,79,8	script	Pet Mimic#D240_0	4_MIMIC,{// 508
+ 	if (BaseLevel < 240)
+ 		end;
+-	if (!.npc_change)
+-		donpcevent "clock_ub_random_mimic::OnRand";	// enabled the NPC independently of the player
++	if (isbegin_quest(5969) == 1) {
++		if (!.npc_change)
++			donpcevent strnpcinfo(0) + "::OnRand";	// enabled the NPC independently of the player
+ 
+-	setpcblock PCBLOCK_NPC, true;
+-	unittalk getcharid(3), "" + strcharinfo(0) + " : A pet mimic that the demon outside the dungeon asked to take care of.", bc_self;
+-	erasequest 5969;
+-	sleep2 500;
+-	specialeffect2 EF_BASH;
+-	setquest 5970;
+-	sleep2 500;
+-	unittalk getcharid(3), "" + strcharinfo(0) + " : Well... I took the food, so it's no problem, right?", bc_self;
+-	setpcblock PCBLOCK_NPC, false;
++		setpcblock PCBLOCK_NPC, true;
++		unittalk getcharid(3), "" + strcharinfo(0) + " : A pet mimic that the demon outside the dungeon asked to take care of.", bc_self;
++		erasequest 5969;
++		specialeffect2 EF_BASH;
++		setquest 5970;
++		sleep2 500;
++		unittalk getcharid(3), "" + strcharinfo(0) + " : Well... I took the food, so it's no problem, right?", bc_self;
++		setpcblock PCBLOCK_NPC, false;
++		end;
++	}
++	if (isbegin_quest(5970) == 1) {
++		emotion ET_SURPRISE;
++		unittalk getcharid(3), "" + strcharinfo(0) + " : Let's leave this place.", bc_self;
++		end;
++	}
++	unittalk getcharid(3), "" + strcharinfo(0) + " : A mimic in a place like this?", bc_self;
+ 	end;
+ 
+ OnRand:
+
+From 77d4d76e39eda42c6437db99320723c4c4d05ff4 Mon Sep 17 00:00:00 2001
+From: Atemo <capucrath@gmail.com>
+Date: Thu, 9 Mar 2023 13:51:19 +0100
+Subject: [PATCH 3/3] Small correction in mob_skill_db
+
+---
+ db/re/mob_skill_db.txt | 64 +++++++++++++++++++++---------------------
+ 1 file changed, 32 insertions(+), 32 deletions(-)
+
+diff --git a/db/re/mob_skill_db.txt b/db/re/mob_skill_db.txt
+index c79bdd9374d..9c0d40ea326 100644
+--- a/db/re/mob_skill_db.txt
++++ b/db/re/mob_skill_db.txt
+@@ -12937,38 +12937,38 @@
+ 3816,MD_MARIN@AL_HEAL,attack,28,1,10000,500,5000,yes,friend,myhpltmaxrate,90,,,,,,,69
+ 
+ // Clock tower unknown basement (custom data)
+-20175,EXTRA_JOKER@NPC_MENTALBREAKER,159,1,2000,0,10000,no,target,always,0,,,,,,,
+-20175,EXTRA_JOKER@NPC_GROUNDATTACK,185,1,2000,0,10000,no,target,always,0,,,,,,,
+-20175,EXTRA_JOKER@MG_LIGHTNINGBOLT,20,5,2000,0,10000,no,target,always,0,,,,,,,
+-20175,EXTRA_JOKER@NPC_WINDATTACK,187,1,2000,0,10000,no,target,always,0,,,,,,,
+-20175,EXTRA_JOKER@MG_COLDBOLT,14,5,2000,0,10000,no,target,always,0,,,,,,,
+-20175,EXTRA_JOKER@NPC_ATTRICHANGE,161,1,2000,0,10000,no,self,always,0,,,,,,,
+-20175,EXTRA_JOKER@NPC_FIREATTACK,186,1,2000,0,10000,no,target,always,0,,,,,,,
+-20175,EXTRA_JOKER@WZ_QUAGMIRE,92,1,2000,0,10000,no,target,always,0,,,,,,,
+-20175,EXTRA_JOKER@MG_FIREBOLT,19,5,2000,0,10000,no,target,always,0,,,,,,,
+-20176,ERZSEBET@NPC_DARKSTRIKE,340,1,2000,0,10000,no,target,always,0,,,,,,,
+-20176,ERZSEBET@MG_SOULSTRIKE,13,1,2000,0,10000,no,target,always,0,,,,,,,
+-20176,ERZSEBET@NPC_SILENCEATTACK,178,1,2000,0,10000,no,target,always,0,,,,,,,
+-20176,ERZSEBET@NPC_DARKNESSATTACK,190,1,2000,0,10000,no,target,always,0,,,,,,,
+-20176,ERZSEBET@NPC_CURSEATTACK,181,1,2000,0,10000,no,target,always,0,,,,,,,
+-20176,ERZSEBET@HW_NAPALMVULCAN,400,1,2000,500,10000,no,target,always,0,,,,,,,
+-// 20177,JENIFFER@NPC_ALL_STAT_DOWN,751,3,2000,0,10000,no,target,always,0,,,,,,,
+-20177,JENIFFER@NPC_GUIDEDATTACK,172,1,2000,0,10000,no,target,always,0,,,,,,,
+-20177,JENIFFER@NPC_POISONATTACK,188,1,2000,0,10000,no,target,always,0,,,,,,,
+-20177,JENIFFER@NPC_COMBOATTACK,171,1,2000,0,10000,no,target,always,0,,,,,,,
+-20177,JENIFFER@NPC_BLOODDRAIN,199,1,2000,0,10000,no,target,always,0,,,,,,,
+-20178,GENERAL_ORC@NPC_SMOKING,195,1,2000,0,10000,no,self,always,0,,,,,,,
+-// 20178,GENERAL_ORC@NPC_DEADLYCURSE,776,1,2000,0,10000,no,target,always,0,,,,,,,
+-20178,GENERAL_ORC@LK_SPIRALPIERCE,397,1,2000,0,10000,no,target,always,0,,,,,,,
+-20178,GENERAL_ORC@CR_SHIELDCHARGE,250,1,2000,0,10000,no,target,always,0,,,,,,,
+-20178,GENERAL_ORC@NPC_FIREATTACK,186,1,2000,0,10000,no,target,always,0,,,,,,,
+-20178,GENERAL_ORC@NPC_PULSESTRIKE,661,1,2000,0,10000,no,self,always,0,,,,,,,
+-20178,GENERAL_ORC@NPC_GUIDEDATTACK,172,1,2000,0,10000,no,target,always,0,,,,,,,
+-// 20179,SIEGLOUSE@NPC_GRADUAL_GRAVITY,752,1,2000,0,10000,no,target,always,0,,,,,,,
+-20179,SIEGLOUSE@NPC_CRITICALSLASH,170,1,2000,0,10000,no,target,always,0,,,,,,,
+-20179,SIEGLOUSE@NPC_GROUNDATTACK,185,1,2000,0,10000,no,target,always,0,,,,,,,
+-20179,SIEGLOUSE@NPC_GUIDEDATTACK,172,1,2000,0,10000,no,target,always,0,,,,,,,
+-20179,SIEGLOUSE@WZ_HEAVENDRIVE,91,1,2000,500,10000,no,target,always,0,,,,,,,
++20175,EXTRA_JOKER@NPC_MENTALBREAKER,attack,159,1,2000,0,10000,no,target,always,0,,,,,,,
++20175,EXTRA_JOKER@NPC_GROUNDATTACK,attack,185,1,2000,0,10000,no,target,always,0,,,,,,,
++20175,EXTRA_JOKER@MG_LIGHTNINGBOLT,attack,20,5,2000,0,10000,no,target,always,0,,,,,,,
++20175,EXTRA_JOKER@NPC_WINDATTACK,attack,187,1,2000,0,10000,no,target,always,0,,,,,,,
++20175,EXTRA_JOKER@MG_COLDBOLT,attack,14,5,2000,0,10000,no,target,always,0,,,,,,,
++20175,EXTRA_JOKER@NPC_ATTRICHANGE,attack,161,1,2000,0,10000,no,self,always,0,,,,,,,
++20175,EXTRA_JOKER@NPC_FIREATTACK,attack,186,1,2000,0,10000,no,target,always,0,,,,,,,
++20175,EXTRA_JOKER@WZ_QUAGMIRE,attack,92,1,2000,0,10000,no,target,always,0,,,,,,,
++20175,EXTRA_JOKER@MG_FIREBOLT,attack,19,5,2000,0,10000,no,target,always,0,,,,,,,
++20176,ERZSEBET@NPC_DARKSTRIKE,attack,340,1,2000,0,10000,no,target,always,0,,,,,,,
++20176,ERZSEBET@MG_SOULSTRIKE,attack,13,1,2000,0,10000,no,target,always,0,,,,,,,
++20176,ERZSEBET@NPC_SILENCEATTACK,attack,178,1,2000,0,10000,no,target,always,0,,,,,,,
++20176,ERZSEBET@NPC_DARKNESSATTACK,attack,190,1,2000,0,10000,no,target,always,0,,,,,,,
++20176,ERZSEBET@NPC_CURSEATTACK,attack,181,1,2000,0,10000,no,target,always,0,,,,,,,
++20176,ERZSEBET@HW_NAPALMVULCAN,attack,400,1,2000,500,10000,no,target,always,0,,,,,,,
++// 20177,JENIFFER@NPC_ALL_STAT_DOWN,attack,751,3,2000,0,10000,no,target,always,0,,,,,,,
++20177,JENIFFER@NPC_GUIDEDATTACK,attack,172,1,2000,0,10000,no,target,always,0,,,,,,,
++20177,JENIFFER@NPC_POISONATTACK,attack,188,1,2000,0,10000,no,target,always,0,,,,,,,
++20177,JENIFFER@NPC_COMBOATTACK,attack,171,1,2000,0,10000,no,target,always,0,,,,,,,
++20177,JENIFFER@NPC_BLOODDRAIN,attack,199,1,2000,0,10000,no,target,always,0,,,,,,,
++20178,GENERAL_ORC@NPC_SMOKING,attack,195,1,2000,0,10000,no,self,always,0,,,,,,,
++// 20178,GENERAL_ORC@NPC_DEADLYCURSE,attack,776,1,2000,0,10000,no,target,always,0,,,,,,,
++20178,GENERAL_ORC@LK_SPIRALPIERCE,attack,397,1,2000,0,10000,no,target,always,0,,,,,,,
++20178,GENERAL_ORC@CR_SHIELDCHARGE,attack,250,1,2000,0,10000,no,target,always,0,,,,,,,
++20178,GENERAL_ORC@NPC_FIREATTACK,attack,186,1,2000,0,10000,no,target,always,0,,,,,,,
++20178,GENERAL_ORC@NPC_PULSESTRIKE,attack,661,1,2000,0,10000,no,self,always,0,,,,,,,
++20178,GENERAL_ORC@NPC_GUIDEDATTACK,attack,172,1,2000,0,10000,no,target,always,0,,,,,,,
++// 20179,SIEGLOUSE@NPC_GRADUAL_GRAVITY,attack,752,1,2000,0,10000,no,target,always,0,,,,,,,
++20179,SIEGLOUSE@NPC_CRITICALSLASH,attack,170,1,2000,0,10000,no,target,always,0,,,,,,,
++20179,SIEGLOUSE@NPC_GROUNDATTACK,attack,185,1,2000,0,10000,no,target,always,0,,,,,,,
++20179,SIEGLOUSE@NPC_GUIDEDATTACK,attack,172,1,2000,0,10000,no,target,always,0,,,,,,,
++20179,SIEGLOUSE@WZ_HEAVENDRIVE,attack,91,1,2000,500,10000,no,target,always,0,,,,,,,
+ 
+ // Episode 17.1 - Illusion (custom) #!todo
+ 20340,EL-A17T@NPC_AGIUP,chase,350,5,2000,0,60000,no,self,always,0,,,,,,6,
