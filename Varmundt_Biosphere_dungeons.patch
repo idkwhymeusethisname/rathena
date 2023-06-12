@@ -1,0 +1,2264 @@
+From 2fe16c008720d62bb0995fd3cb699dc66065c808 Mon Sep 17 00:00:00 2001
+From: Atemo <capucrath@gmail.com>
+Date: Sun, 11 Jun 2023 20:09:48 +0200
+Subject: [PATCH 1/2] Initiale release
+
+---
+ db/re/mob_db.yml                       | 1458 ++++++++++++++++++++++--
+ npc/re/merchants/barters.yml           |    1 +
+ npc/re/merchants/barters/biosphere.yml |  319 ++++++
+ npc/re/merchants/biosphere.txt         |  252 ++++
+ npc/re/mobs/dungeons/biosphere.txt     |   45 +
+ npc/re/scripts_athena.conf             |    1 +
+ npc/re/scripts_monsters.conf           |    1 +
+ npc/re/scripts_warps.conf              |    1 +
+ npc/re/warps/dungeons/biosphere.txt    |   57 +
+ 9 files changed, 2071 insertions(+), 64 deletions(-)
+ create mode 100644 npc/re/merchants/barters/biosphere.yml
+ create mode 100644 npc/re/merchants/biosphere.txt
+ create mode 100644 npc/re/mobs/dungeons/biosphere.txt
+ create mode 100644 npc/re/warps/dungeons/biosphere.txt
+
+diff --git a/db/re/mob_db.yml b/db/re/mob_db.yml
+index d7d0c86d7b8..685bd71da7c 100644
+--- a/db/re/mob_db.yml
++++ b/db/re/mob_db.yml
+@@ -105113,70 +105113,1400 @@ Body:
+ #    AegisName: MD_COMMON
+ #  - Id: 21547
+ #    AegisName: M_INCREASE_SOIL
+-#  - Id: 21548
+-#    AegisName: ECO_CORNUS
+-#  - Id: 21549
+-#    AegisName: ECO_PINGUICULA
+-#  - Id: 21550
+-#    AegisName: ECO_HUNTER_FLY
+-#  - Id: 21551
+-#    AegisName: ECO_ROCKER
+-#  - Id: 21552
+-#    AegisName: ECO_SAVAGE
+-#  - Id: 21553
+-#    AegisName: ECO_FLORA
+-#  - Id: 21554
+-#    AegisName: ECO_HILL_WIND
+-#  - Id: 21555
+-#    AegisName: ECO_MISTRESS
+-#  - Id: 21556
+-#    AegisName: ECO_EXPLOSION
+-#  - Id: 21557
+-#    AegisName: ECO_DELETER
+-#  - Id: 21558
+-#    AegisName: ECO_JAKK
+-#  - Id: 21559
+-#    AegisName: ECO_LAVA_GOLEM
+-#  - Id: 21560
+-#    AegisName: ECO_MAJORUROS
+-#  - Id: 21561
+-#    AegisName: ECO_HYDRO
+-#  - Id: 21562
+-#    AegisName: ECO_ACIDUS
+-#  - Id: 21563
+-#    AegisName: ECO_DETALE
+-#  - Id: 21564
+-#    AegisName: ECO_ICE_TITAN
+-#  - Id: 21565
+-#    AegisName: ECO_SIROMA
+-#  - Id: 21566
+-#    AegisName: ECO_SNOWIER
+-#  - Id: 21567
+-#    AegisName: ECO_CENTIPEDE
+-#  - Id: 21568
+-#    AegisName: ECO_AQUA_ELEMENTAL
+-#  - Id: 21569
+-#    AegisName: ECO_ANGELGOLT
+-#  - Id: 21570
+-#    AegisName: ECO_RHYNCHO
+-#  - Id: 21571
+-#    AegisName: ECO_KTULLANUX
+-#  - Id: 21572
+-#    AegisName: ECO_ANCIENT_MUMMY
+-#  - Id: 21573
+-#    AegisName: ECO_LUDE
+-#  - Id: 21574
+-#    AegisName: ECO_RAGGED_ZOMBIE
+-#  - Id: 21575
+-#    AegisName: ECO_WRAITH
+-#  - Id: 21576
+-#    AegisName: ECO_FLAME_SKULL
+-#  - Id: 21577
+-#    AegisName: ECO_BANSHEE
+-#  - Id: 21578
+-#    AegisName: ECO_KNIGHT_OF_ABYSS
+-#  - Id: 21579
+-#    AegisName: ECO_LORD_OF_DEATH
++  - Id: 21548
++    AegisName: ECO_CORNUS
++    Name: Verdant Corinus
++    Level: 250
++    Hp: 4537500
++    BaseExp: 129643
++    JobExp: 86429
++    Attack: 10804
++    Attack2: 5876
++    Defense: 281
++    MagicDefense: 110
++    MagicResistance: 250
++    Resistance: 250
++    Str: 198
++    Agi: 214
++    Vit: 121
++    Int: 160
++    Dex: 280
++    Luk: 90
++    AttackRange: 1
++    SkillRange: 10
++    ChaseRange: 12
++    Size: Medium
++    Race: Brute
++    Element: Holy
++    ElementLevel: 3
++    WalkSpeed: 120
++    AttackDelay: 313
++    AttackMotion: 624
++    DamageMotion: 300
++    DamageTaken: 10
++    Ai: 04
++    Drops:
++      - Item: Mystic_Horn
++        Rate: 4000
++      - Item: Soft_Feather
++        Rate: 1500
++      - Item: Feather
++        Rate: 1000
++      - Item: Shadowdecon
++        Rate: 5
++      - Item: Shadowdecon_Ore
++        Rate: 100
++  - Id: 21549
++    AegisName: ECO_PINGUICULA
++    Name: Verdant Pinguicula
++    Level: 251
++    Hp: 3652050
++    BaseExp: 104344
++    JobExp: 69563
++    Attack: 10231
++    Attack2: 6746
++    Defense: 213
++    MagicDefense: 115
++    MagicResistance: 250
++    Resistance: 250
++    Str: 180
++    Agi: 209
++    Vit: 97
++    Int: 176
++    Dex: 264
++    Luk: 77
++    AttackRange: 1
++    SkillRange: 10
++    ChaseRange: 12
++    Size: Medium
++    Race: Plant
++    Element: Earth
++    ElementLevel: 1
++    WalkSpeed: 150
++    AttackDelay: 359
++    AttackMotion: 600
++    DamageMotion: 360
++    DamageTaken: 10
++    Ai: 04
++    Drops:
++      - Item: Sharp_Leaf
++        Rate: 2500
++      - Item: Great_Leaf
++        Rate: 1000
++      - Item: Elder_Branch
++        Rate: 250
++      - Item: Zelunium
++        Rate: 5
++      - Item: Zelunium_Ore
++        Rate: 100
++  - Id: 21550
++    AegisName: ECO_HUNTER_FLY
++    Name: Verdant Hunter Fly
++    Level: 249
++    Hp: 3361500
++    BaseExp: 96043
++    JobExp: 64029
++    Attack: 9976
++    Attack2: 5769
++    Defense: 329
++    MagicDefense: 109
++    MagicResistance: 250
++    Resistance: 250
++    Str: 178
++    Agi: 281
++    Vit: 90
++    Int: 155
++    Dex: 301
++    Luk: 77
++    AttackRange: 1
++    SkillRange: 10
++    ChaseRange: 12
++    Size: Small
++    Race: Insect
++    Element: Wind
++    ElementLevel: 2
++    WalkSpeed: 120
++    AttackDelay: 434
++    AttackMotion: 576
++    DamageMotion: 480
++    DamageTaken: 10
++    Ai: 04
++    Modes:
++      Detector: true
++    Drops:
++      - Item: Rough_Wind
++        Rate: 25
++      - Item: Steel
++        Rate: 50
++      - Item: Solid_Shell
++        Rate: 2668
++      - Item: Shadowdecon
++        Rate: 5
++      - Item: Shadowdecon_Ore
++        Rate: 100
++  - Id: 21551
++    AegisName: ECO_ROCKER
++    Name: Verdant Rocker
++    Level: 245
++    Hp: 4520250
++    BaseExp: 129150
++    JobExp: 86100
++    Attack: 11293
++    Attack2: 4904
++    Defense: 320
++    MagicDefense: 149
++    MagicResistance: 250
++    Resistance: 250
++    Str: 270
++    Agi: 214
++    Vit: 123
++    Int: 141
++    Dex: 309
++    Luk: 80
++    AttackRange: 1
++    SkillRange: 10
++    ChaseRange: 12
++    Size: Medium
++    Race: Insect
++    Element: Earth
++    ElementLevel: 1
++    WalkSpeed: 150
++    AttackDelay: 104
++    AttackMotion: 432
++    DamageMotion: 540
++    DamageTaken: 10
++    Ai: 04
++    Modes:
++      Detector: true
++    Drops:
++      - Item: Grasshopper's_Leg
++        Rate: 8000
++      - Item: Green_Feeler
++        Rate: 5
++      - Item: Grasshopper_Doll
++        Rate: 10
++      - Item: Zelunium
++        Rate: 5
++      - Item: Zelunium_Ore
++        Rate: 100
++  - Id: 21552
++    AegisName: ECO_SAVAGE
++    Name: Verdant Savage
++    Level: 247
++    Hp: 5261100
++    BaseExp: 150317
++    JobExp: 100211
++    Attack: 10997
++    Attack2: 4223
++    Defense: 380
++    MagicDefense: 103
++    MagicResistance: 250
++    Resistance: 250
++    Str: 230
++    Agi: 189
++    Vit: 142
++    Int: 70
++    Dex: 310
++    Luk: 77
++    AttackRange: 1
++    SkillRange: 10
++    ChaseRange: 12
++    Size: Large
++    Race: Brute
++    Element: Earth
++    ElementLevel: 2
++    WalkSpeed: 150
++    AttackDelay: 172
++    AttackMotion: 480
++    DamageMotion: 384
++    DamageTaken: 10
++    Ai: 04
++    Drops:
++      - Item: Wild_Boar's_Mane
++        Rate: 4500
++      - Item: Grape
++        Rate: 150
++      - Item: Savage_Meat
++        Rate: 25
++      - Item: Shadowdecon
++        Rate: 5
++      - Item: Shadowdecon_Ore
++        Rate: 100
++  - Id: 21553
++    AegisName: ECO_FLORA
++    Name: Verdant Flora
++    Level: 254
++    Hp: 3352800
++    BaseExp: 95794
++    JobExp: 63863
++    Attack: 12087
++    Attack2: 4380
++    Defense: 288
++    MagicDefense: 211
++    MagicResistance: 250
++    Resistance: 250
++    Str: 339
++    Agi: 211
++    Vit: 88
++    Int: 108
++    Dex: 387
++    Luk: 66
++    AttackRange: 3
++    SkillRange: 10
++    ChaseRange: 12
++    Size: Large
++    Race: Plant
++    Element: Earth
++    ElementLevel: 1
++    WalkSpeed: 1000
++    AttackDelay: 290
++    AttackMotion: 288
++    DamageMotion: 432
++    DamageTaken: 10
++    Ai: 04
++    Drops:
++      - Item: Blossom_Of_Maneater
++        Rate: 4500
++      - Item: Stem
++        Rate: 1000
++      - Item: Leaflet_Of_Aloe
++        Rate: 25
++      - Item: Zelunium
++        Rate: 5
++      - Item: Zelunium_Ore
++        Rate: 100
++  - Id: 21554
++    AegisName: ECO_HILL_WIND
++    Name: Verdant Hill Wind
++    Level: 250
++    Hp: 3375000
++    BaseExp: 96429
++    JobExp: 64286
++    Attack: 9897
++    Attack2: 4786
++    Defense: 280
++    MagicDefense: 144
++    MagicResistance: 250
++    Resistance: 250
++    Str: 288
++    Agi: 223
++    Vit: 90
++    Int: 69
++    Dex: 338
++    Luk: 77
++    AttackRange: 1
++    SkillRange: 10
++    ChaseRange: 12
++    Size: Medium
++    Race: Brute
++    Element: Wind
++    ElementLevel: 3
++    WalkSpeed: 170
++    AttackDelay: 210
++    AttackMotion: 360
++    DamageMotion: 360
++    DamageTaken: 10
++    Ai: 04
++    Drops:
++      - Item: Harpy's_Feather
++        Rate: 2000
++      - Item: Harpy's_Claw
++        Rate: 1500
++      - Item: Monster's_Feed
++        Rate: 500
++      - Item: Shadowdecon
++        Rate: 5
++      - Item: Shadowdecon_Ore
++        Rate: 100
++  - Id: 21555
++    AegisName: ECO_MISTRESS
++    Name: Verdant Mistress
++    Level: 260
++    Hp: 21255000
++    BaseExp: 607286
++    JobExp: 404857
++    Attack: 13220
++    Attack2: 7716
++    Defense: 397
++    MagicDefense: 320
++    MagicResistance: 300
++    Resistance: 300
++    Str: 311
++    Agi: 287
++    Vit: 109
++    Int: 187
++    Dex: 380
++    Luk: 97
++    AttackRange: 1
++    SkillRange: 10
++    ChaseRange: 12
++    Size: Small
++    Race: Insect
++    Element: Wind
++    ElementLevel: 4
++    WalkSpeed: 100
++    AttackDelay: 53762
++    AttackMotion: 648
++    DamageMotion: 300
++    DamageTaken: 10
++    Ai: 21
++    Class: Boss
++    Modes:
++      Detector: true
++    Drops:
++      - Item: Old_Card_Album
++        Rate: 500
++      - Item: Honey
++        Rate: 5000
++      - Item: Royal_Jelly
++        Rate: 2500
++      - Item: Zelunium
++        Rate: 1000
++      - Item: Shadowdecon
++        Rate: 1000
++  - Id: 21556
++    AegisName: ECO_EXPLOSION
++    Name: Blazing Explosion
++    Level: 255
++    Hp: 4628250
++    BaseExp: 132236
++    JobExp: 88157
++    Attack: 9867
++    Attack2: 6877
++    Defense: 311
++    MagicDefense: 90
++    MagicResistance: 250
++    Resistance: 250
++    Str: 201
++    Agi: 214
++    Vit: 121
++    Int: 160
++    Dex: 280
++    Luk: 90
++    AttackRange: 1
++    SkillRange: 10
++    ChaseRange: 12
++    Size: Small
++    Race: Brute
++    Element: Fire
++    ElementLevel: 3
++    WalkSpeed: 165
++    AttackDelay: 460
++    AttackMotion: 576
++    DamageMotion: 336
++    DamageTaken: 10
++    Ai: 04
++    Drops:
++      - Item: Wing_Of_Red_Bat
++        Rate: 2750
++      - Item: Burning_Heart
++        Rate: 1100
++      - Item: Hot_Hair
++        Rate: 1600
++      - Item: Zelunium
++        Rate: 5
++      - Item: Zelunium_Ore
++        Rate: 100
++  - Id: 21557
++    AegisName: ECO_DELETER
++    Name: Blazing Sky Deleter
++    Level: 252
++    Hp: 23785549
++    BaseExp: 105420
++    JobExp: 70280
++    Attack: 9799
++    Attack2: 7899
++    Defense: 211
++    MagicDefense: 97
++    MagicResistance: 250
++    Resistance: 250
++    Str: 180
++    Agi: 209
++    Vit: 98
++    Int: 176
++    Dex: 264
++    Luk: 77
++    AttackRange: 1
++    SkillRange: 10
++    ChaseRange: 12
++    Size: Medium
++    Race: Dragon
++    Element: Fire
++    ElementLevel: 2
++    WalkSpeed: 175
++    AttackDelay: 227
++    AttackMotion: 540
++    DamageMotion: 384
++    DamageTaken: 10
++    Ai: 04
++    Drops:
++      - Item: Dragon's_Skin
++        Rate: 1000
++      - Item: Dragon_Canine
++        Rate: 1300
++      - Item: Dragon_Train
++        Rate: 1000
++      - Item: Shadowdecon
++        Rate: 5
++      - Item: Shadowdecon_Ore
++        Rate: 100
++  - Id: 21558
++    AegisName: ECO_JAKK
++    Name: Blazing Jakk
++    Level: 245
++    Hp: 3528000
++    BaseExp: 100800
++    JobExp: 67200
++    Attack: 8780
++    Attack2: 4567
++    Defense: 155
++    MagicDefense: 98
++    MagicResistance: 250
++    Resistance: 250
++    Str: 178
++    Agi: 281
++    Vit: 96
++    Int: 155
++    Dex: 301
++    Luk: 77
++    AttackRange: 1
++    SkillRange: 10
++    ChaseRange: 12
++    Size: Medium
++    Race: Formless
++    Element: Fire
++    ElementLevel: 2
++    WalkSpeed: 200
++    AttackDelay: 328
++    AttackMotion: 480
++    DamageMotion: 324
++    DamageTaken: 10
++    Ai: 04
++    Drops:
++      - Item: Pumpkin_Head
++        Rate: 4500
++      - Item: Zargon
++        Rate: 450
++      - Item: Pumpkin
++        Rate: 500
++      - Item: Zelunium
++        Rate: 5
++      - Item: Zelunium_Ore
++        Rate: 100
++  - Id: 21559
++    AegisName: ECO_LAVA_GOLEM
++    Name: Blazing Lava Golem
++    Level: 254
++    Hp: 5715000
++    BaseExp: 163286
++    JobExp: 108857
++    Attack: 10329
++    Attack2: 3879
++    Defense: 480
++    MagicDefense: 200
++    MagicResistance: 250
++    Resistance: 250
++    Str: 270
++    Agi: 214
++    Vit: 150
++    Int: 141
++    Dex: 309
++    Luk: 80
++    AttackRange: 1
++    SkillRange: 10
++    ChaseRange: 12
++    Size: Large
++    Race: Formless
++    Element: Fire
++    ElementLevel: 4
++    WalkSpeed: 300
++    AttackDelay: 353
++    AttackMotion: 1224
++    DamageMotion: 336
++    DamageTaken: 10
++    Ai: 04
++    Drops:
++      - Item: Cold_Magma
++        Rate: 2280
++      - Item: Burning_Heart
++        Rate: 1843
++      - Item: White_Herb
++        Rate: 1250
++      - Item: Shadowdecon
++        Rate: 5
++      - Item: Shadowdecon_Ore
++        Rate: 100
++  - Id: 21560
++    AegisName: ECO_MAJORUROS
++    Name: Blazing Majoruros
++    Level: 253
++    Hp: 5199150
++    BaseExp: 148547
++    JobExp: 99031
++    Attack: 11076
++    Attack2: 6776
++    Defense: 389
++    MagicDefense: 108
++    MagicResistance: 250
++    Resistance: 250
++    Str: 230
++    Agi: 189
++    Vit: 137
++    Int: 70
++    Dex: 310
++    Luk: 77
++    AttackRange: 1
++    SkillRange: 10
++    ChaseRange: 12
++    Size: Large
++    Race: Brute
++    Element: Fire
++    ElementLevel: 2
++    WalkSpeed: 150
++    AttackDelay: 399
++    AttackMotion: 960
++    DamageMotion: 540
++    DamageTaken: 10
++    Ai: 04
++    Drops:
++      - Item: Nose_Ring
++        Rate: 2207
++      - Item: Beef_Head_Meat
++        Rate: 500
++      - Item: White_Herb
++        Rate: 925
++      - Item: Zelunium
++        Rate: 5
++      - Item: Zelunium_Ore
++        Rate: 100
++  - Id: 21561
++    AegisName: ECO_HYDRO
++    Name: Blazing Hydrolancer
++    Level: 255
++    Hp: 5622750
++    BaseExp: 160650
++    JobExp: 107100
++    Attack: 12003
++    Attack2: 8540
++    Defense: 534
++    MagicDefense: 105
++    MagicResistance: 250
++    Resistance: 250
++    Str: 339
++    Agi: 211
++    Vit: 147
++    Int: 108
++    Dex: 387
++    Luk: 66
++    AttackRange: 2
++    SkillRange: 10
++    ChaseRange: 12
++    Size: Large
++    Race: Dragon
++    Element: Dark
++    ElementLevel: 2
++    WalkSpeed: 160
++    AttackDelay: 314
++    AttackMotion: 672
++    DamageMotion: 432
++    DamageTaken: 10
++    Ai: 04
++    Drops:
++      - Item: Dragon's_Skin
++        Rate: 2000
++      - Item: Dragon_Canine
++        Rate: 2000
++      - Item: Tri_Headed_Dragon_Head
++        Rate: 1940
++      - Item: Shadowdecon
++        Rate: 5
++      - Item: Shadowdecon_Ore
++        Rate: 100
++  - Id: 21562
++    AegisName: ECO_ACIDUS
++    Name: Blazing Black Acidus
++    Level: 254
++    Hp: 22410484
++    BaseExp: 126448
++    JobExp: 84299
++    Attack: 8830
++    Attack2: 5020
++    Defense: 422
++    MagicDefense: 98
++    MagicResistance: 250
++    Resistance: 250
++    Str: 288
++    Agi: 223
++    Vit: 121
++    Int: 69
++    Dex: 338
++    Luk: 77
++    AttackRange: 2
++    SkillRange: 10
++    ChaseRange: 12
++    Size: Large
++    Race: Dragon
++    Element: Dark
++    ElementLevel: 4
++    WalkSpeed: 160
++    AttackDelay: 189
++    AttackMotion: 756
++    DamageMotion: 300
++    DamageTaken: 10
++    Ai: 04
++    Drops:
++      - Item: Dragon_Canine
++        Rate: 1200
++      - Item: Dragon_Train
++        Rate: 500
++      - Item: Dragon_Scale
++        Rate: 750
++      - Item: Zelunium
++        Rate: 5
++      - Item: Zelunium_Ore
++        Rate: 100
++  - Id: 21563
++    AegisName: ECO_DETALE
++    Name: Blazing Detardeurus
++    Level: 260
++    Hp: 40950000
++    BaseExp: 1170000
++    JobExp: 780000
++    Attack: 14200
++    Attack2: 9400
++    Defense: 503
++    MagicDefense: 289
++    MagicResistance: 300
++    Resistance: 300
++    Str: 311
++    Agi: 287
++    Vit: 210
++    Int: 187
++    Dex: 380
++    Luk: 97
++    AttackRange: 1
++    SkillRange: 10
++    ChaseRange: 12
++    Size: Large
++    Race: Dragon
++    Element: Dark
++    ElementLevel: 3
++    WalkSpeed: 250
++    AttackDelay: 3487
++    AttackMotion: 936
++    DamageMotion: 360
++    DamageTaken: 10
++    Ai: 21
++    Class: Boss
++    Drops:
++      - Item: Treasure_Box
++        Rate: 2500
++      - Item: Scale_Of_Red_Dragon
++        Rate: 1795
++      - Item: Tri_Headed_Dragon_Head
++        Rate: 5000
++      - Item: Zelunium
++        Rate: 1000
++      - Item: Shadowdecon
++        Rate: 1000
++  - Id: 21564
++    AegisName: ECO_ICE_TITAN
++    Name: Glacial Ice Titan
++    Level: 252
++    Hp: 6350400
++    BaseExp: 181440
++    JobExp: 120960
++    Attack: 10110
++    Attack2: 6400
++    Defense: 398
++    MagicDefense: 287
++    MagicResistance: 250
++    Resistance: 250
++    Str: 201
++    Agi: 214
++    Vit: 168
++    Int: 160
++    Dex: 280
++    Luk: 90
++    AttackRange: 2
++    SkillRange: 10
++    ChaseRange: 12
++    Size: Large
++    Race: Formless
++    Element: Water
++    ElementLevel: 3
++    WalkSpeed: 200
++    AttackDelay: 661
++    AttackMotion: 660
++    DamageMotion: 144
++    DamageTaken: 10
++    Ai: 04
++    Drops:
++      - Item: Ice_Heart
++        Rate: 2500
++      - Item: Ice_Piece
++        Rate: 1500
++      - Item: Cold_Ice
++        Rate: 250
++      - Item: Shadowdecon
++        Rate: 5
++      - Item: Shadowdecon_Ore
++        Rate: 100
++  - Id: 21565
++    AegisName: ECO_SIROMA
++    Name: Glacial Siroma
++    Level: 251
++    Hp: 4593300
++    BaseExp: 131237
++    JobExp: 87491
++    Attack: 7983
++    Attack2: 5679
++    Defense: 144
++    MagicDefense: 138
++    MagicResistance: 250
++    Resistance: 250
++    Str: 112
++    Agi: 209
++    Vit: 122
++    Int: 176
++    Dex: 264
++    Luk: 77
++    AttackRange: 1
++    SkillRange: 10
++    ChaseRange: 12
++    Size: Small
++    Race: Formless
++    Element: Water
++    ElementLevel: 3
++    WalkSpeed: 150
++    AttackDelay: 543
++    AttackMotion: 648
++    DamageMotion: 240
++    DamageTaken: 10
++    Ai: 04
++    Drops:
++      - Item: Ice_Heart
++        Rate: 250
++      - Item: Ice_Piece
++        Rate: 750
++      - Item: Cold_Ice
++        Rate: 125
++      - Item: Zelunium
++        Rate: 5
++      - Item: Zelunium_Ore
++        Rate: 100
++  - Id: 21566
++    AegisName: ECO_SNOWIER
++    Name: Glacial Snowier
++    Level: 249
++    Hp: 5415750
++    BaseExp: 154736
++    JobExp: 103157
++    Attack: 11089
++    Attack2: 4899
++    Defense: 288
++    MagicDefense: 200
++    MagicResistance: 250
++    Resistance: 250
++    Str: 178
++    Agi: 281
++    Vit: 145
++    Int: 155
++    Dex: 301
++    Luk: 77
++    AttackRange: 1
++    SkillRange: 10
++    ChaseRange: 12
++    Size: Large
++    Race: Formless
++    Element: Water
++    ElementLevel: 2
++    WalkSpeed: 180
++    AttackDelay: 339
++    AttackMotion: 816
++    DamageMotion: 420
++    DamageTaken: 10
++    Ai: 04
++    Drops:
++      - Item: Ice_Heart
++        Rate: 1500
++      - Item: Ice_Piece
++        Rate: 500
++      - Item: Crystal_Blue
++        Rate: 150
++      - Item: Shadowdecon
++        Rate: 5
++      - Item: Shadowdecon_Ore
++        Rate: 100
++  - Id: 21567
++    AegisName: ECO_CENTIPEDE
++    Name: Glacial Centipede
++    Level: 252
++    Hp: 3969000
++    BaseExp: 113400
++    JobExp: 75600
++    Attack: 8979
++    Attack2: 6790
++    Defense: 90
++    MagicDefense: 180
++    MagicResistance: 250
++    Resistance: 250
++    Str: 187
++    Agi: 214
++    Vit: 108
++    Int: 141
++    Dex: 309
++    Luk: 80
++    AttackRange: 1
++    SkillRange: 10
++    ChaseRange: 12
++    Size: Medium
++    Race: Insect
++    Element: Poison
++    ElementLevel: 2
++    WalkSpeed: 150
++    AttackDelay: 694
++    AttackMotion: 792
++    DamageMotion: 336
++    DamageTaken: 10
++    Ai: 04
++    Modes:
++      Detector: true
++    Drops:
++      - Item: Short_Leg
++        Rate: 2668
++      - Item: Zargon
++        Rate: 2500
++      - Item: Solid_Shell
++        Rate: 1250
++      - Item: Zelunium
++        Rate: 5
++      - Item: Zelunium_Ore
++        Rate: 100
++  - Id: 21568
++    AegisName: ECO_AQUA_ELEMENTAL
++    Name: Glacial Aqua Elemental
++    Level: 247
++    Hp: 3816150
++    BaseExp: 109033
++    JobExp: 72689
++    Attack: 7877
++    Attack2: 6900
++    Defense: 50
++    MagicDefense: 391
++    MagicResistance: 250
++    Resistance: 250
++    Str: 166
++    Agi: 189
++    Vit: 103
++    Int: 70
++    Dex: 310
++    Luk: 77
++    AttackRange: 1
++    SkillRange: 10
++    ChaseRange: 12
++    Size: Large
++    Race: Formless
++    Element: Water
++    ElementLevel: 4
++    WalkSpeed: 190
++    AttackDelay: 291
++    AttackMotion: 648
++    DamageMotion: 576
++    DamageTaken: 10
++    Ai: 04
++    Drops:
++      - Item: Crystalized_Teardrop
++        Rate: 500
++      - Item: Fluorescent_Liquid
++        Rate: 2500
++      - Item: Starsand_Of_Witch
++        Rate: 1250
++      - Item: Shadowdecon
++        Rate: 5
++      - Item: Shadowdecon_Ore
++        Rate: 100
++  - Id: 21569
++    AegisName: ECO_ANGELGOLT
++    Name: Glacial Angelgolt
++    Level: 254
++    Hp: 4991100
++    BaseExp: 142603
++    JobExp: 95069
++    Attack: 9870
++    Attack2: 10110
++    Defense: 113
++    MagicDefense: 280
++    MagicResistance: 250
++    Resistance: 250
++    Str: 215
++    Agi: 211
++    Vit: 131
++    Int: 108
++    Dex: 387
++    Luk: 66
++    AttackRange: 2
++    SkillRange: 10
++    ChaseRange: 12
++    Size: Small
++    Race: Angel
++    Element: Holy
++    ElementLevel: 4
++    WalkSpeed: 220
++    AttackDelay: 756
++    AttackMotion: 1248
++    DamageMotion: 480
++    DamageTaken: 10
++    Ai: 04
++    Drops:
++      - Item: Soft_Feather
++        Rate: 300
++      - Item: Rune_Of_Darkness
++        Rate: 2000
++      - Item: Stone_Of_Intelligence_
++        Rate: 15
++      - Item: Zelunium
++        Rate: 5
++      - Item: Zelunium_Ore
++        Rate: 100
++  - Id: 21570
++    AegisName: ECO_RHYNCHO
++    Name: Glacial Rhyncho
++    Level: 250
++    Hp: 5250000
++    BaseExp: 150000
++    JobExp: 100000
++    Attack: 8790
++    Attack2: 6770
++    Defense: 120
++    MagicDefense: 200
++    MagicResistance: 250
++    Resistance: 250
++    Str: 197
++    Agi: 223
++    Vit: 140
++    Int: 69
++    Dex: 338
++    Luk: 77
++    AttackRange: 2
++    SkillRange: 10
++    ChaseRange: 12
++    Size: Medium
++    Race: Formless
++    Element: Water
++    ElementLevel: 3
++    WalkSpeed: 220
++    AttackDelay: 315
++    AttackMotion: 660
++    DamageMotion: 420
++    DamageTaken: 10
++    Ai: 04
++    Drops:
++      - Item: Karvodailnirol
++        Rate: 10
++      - Item: Fluorescent_Liquid
++        Rate: 2500
++      - Item: Starsand_Of_Witch
++        Rate: 1250
++      - Item: Shadowdecon
++        Rate: 5
++      - Item: Shadowdecon_Ore
++        Rate: 100
++  - Id: 21571
++    AegisName: ECO_KTULLANUX
++    Name: Glacial Ktullanux
++    Level: 260
++    Hp: 39000000
++    BaseExp: 1114286
++    JobExp: 742857
++    Attack: 13207
++    Attack2: 9876
++    Defense: 328
++    MagicDefense: 388
++    MagicResistance: 300
++    Resistance: 300
++    Str: 311
++    Agi: 287
++    Vit: 200
++    Int: 187
++    Dex: 380
++    Luk: 97
++    AttackRange: 1
++    SkillRange: 10
++    ChaseRange: 12
++    Size: Large
++    Race: Brute
++    Element: Water
++    ElementLevel: 4
++    WalkSpeed: 350
++    AttackDelay: 3507
++    AttackMotion: 840
++    DamageMotion: 216
++    DamageTaken: 10
++    Ai: 21
++    Class: Boss
++    Drops:
++      - Item: Old_Card_Album
++        Rate: 500
++      - Item: Ice_Scale
++        Rate: 5000
++      - Item: Old_Violet_Box
++        Rate: 2500
++      - Item: Zelunium
++        Rate: 1000
++      - Item: Shadowdecon
++        Rate: 1000
++  - Id: 21572
++    AegisName: ECO_ANCIENT_MUMMY
++    Name: Grave Ancient Mummy
++    Level: 250
++    Hp: 4950000
++    BaseExp: 141429
++    JobExp: 94286
++    Attack: 10997
++    Attack2: 4223
++    Defense: 329
++    MagicDefense: 108
++    MagicResistance: 250
++    Resistance: 250
++    Str: 198
++    Agi: 214
++    Vit: 132
++    Int: 160
++    Dex: 280
++    Luk: 90
++    AttackRange: 1
++    SkillRange: 10
++    ChaseRange: 12
++    Size: Medium
++    Race: Undead
++    Element: Undead
++    ElementLevel: 2
++    WalkSpeed: 140
++    AttackDelay: 189
++    AttackMotion: 120
++    DamageMotion: 384
++    DamageTaken: 10
++    Ai: 04
++    Drops:
++      - Item: Rotten_Bandage
++        Rate: 2207
++      - Item: Mementos
++        Rate: 900
++      - Item: Silver_Ring
++        Rate: 50
++      - Item: Zelunium
++        Rate: 5
++      - Item: Zelunium_Ore
++        Rate: 100
++  - Id: 21573
++    AegisName: ECO_LUDE
++    Name: Grave Lude
++    Level: 251
++    Hp: 3652050
++    BaseExp: 104344
++    JobExp: 69563
++    Attack: 12087
++    Attack2: 4380
++    Defense: 320
++    MagicDefense: 105
++    MagicResistance: 250
++    Resistance: 250
++    Str: 180
++    Agi: 209
++    Vit: 97
++    Int: 176
++    Dex: 264
++    Luk: 77
++    AttackRange: 1
++    SkillRange: 10
++    ChaseRange: 12
++    Size: Small
++    Race: Undead
++    Element: Undead
++    ElementLevel: 1
++    WalkSpeed: 150
++    AttackDelay: 374
++    AttackMotion: 600
++    DamageMotion: 360
++    DamageTaken: 10
++    Ai: 04
++    Drops:
++      - Item: Pumpkin_Bucket
++        Rate: 1600
++      - Item: Ectoplasm
++        Rate: 2862
++      - Item: Transparent_Cloth
++        Rate: 500
++      - Item: Shadowdecon
++        Rate: 5
++      - Item: Shadowdecon_Ore
++        Rate: 100
++  - Id: 21574
++    AegisName: ECO_RAGGED_ZOMBIE
++    Name: Grave Ragged Zombie
++    Level: 249
++    Hp: 4407300
++    BaseExp: 125923
++    JobExp: 83949
++    Attack: 9897
++    Attack2: 4786
++    Defense: 380
++    MagicDefense: 98
++    MagicResistance: 250
++    Resistance: 250
++    Str: 178
++    Agi: 281
++    Vit: 118
++    Int: 155
++    Dex: 301
++    Luk: 77
++    AttackRange: 9
++    SkillRange: 10
++    ChaseRange: 12
++    Size: Medium
++    Race: Undead
++    Element: Undead
++    ElementLevel: 3
++    WalkSpeed: 150
++    AttackDelay: 583
++    AttackMotion: 576
++    DamageMotion: 420
++    DamageTaken: 10
++    Ai: 04
++    Drops:
++      - Item: Clattering_Skull
++        Rate: 1500
++      - Item: Skel_Bone
++        Rate: 2250
++      - Item: Carnium
++        Rate: 15
++      - Item: Zelunium
++        Rate: 5
++      - Item: Zelunium_Ore
++        Rate: 100
++  - Id: 21575
++    AegisName: ECO_WRAITH
++    Name: Grave Wraith Dead
++    Level: 245
++    Hp: 3711750
++    BaseExp: 106050
++    JobExp: 70700
++    Attack: 13220
++    Attack2: 7716
++    Defense: 288
++    MagicDefense: 289
++    MagicResistance: 250
++    Resistance: 250
++    Str: 270
++    Agi: 214
++    Vit: 101
++    Int: 141
++    Dex: 309
++    Luk: 80
++    AttackRange: 1
++    SkillRange: 10
++    ChaseRange: 12
++    Size: Large
++    Race: Undead
++    Element: Undead
++    ElementLevel: 4
++    WalkSpeed: 220
++    AttackDelay: 608
++    AttackMotion: 576
++    DamageMotion: 240
++    DamageTaken: 10
++    Ai: 04
++    Drops:
++      - Item: Transparent_Cloth
++        Rate: 2910
++      - Item: Red_Gemstone
++        Rate: 500
++      - Item: Crystal_Jewel_
++        Rate: 10
++      - Item: Shadowdecon
++        Rate: 5
++      - Item: Shadowdecon_Ore
++        Rate: 100
++  - Id: 21576
++    AegisName: ECO_FLAME_SKULL
++    Name: Grave Flame Skull
++    Level: 247
++    Hp: 3667950
++    BaseExp: 104799
++    JobExp: 69866
++    Attack: 10997
++    Attack2: 4223
++    Defense: 389
++    MagicDefense: 391
++    MagicResistance: 250
++    Resistance: 250
++    Str: 230
++    Agi: 189
++    Vit: 99
++    Int: 70
++    Dex: 310
++    Luk: 77
++    AttackRange: 1
++    SkillRange: 10
++    ChaseRange: 12
++    Size: Small
++    Race: Demon
++    Element: Ghost
++    ElementLevel: 3
++    WalkSpeed: 150
++    AttackDelay: 441
++    AttackMotion: 648
++    DamageMotion: 432
++    DamageTaken: 10
++    Ai: 04
++    Modes:
++      Detector: true
++    Drops:
++      - Item: Skull
++        Rate: 2500
++      - Item: Horrendous_Mouth
++        Rate: 3000
++      - Item: Mementos
++        Rate: 250
++      - Item: Zelunium
++        Rate: 5
++      - Item: Zelunium_Ore
++        Rate: 100
++  - Id: 21577
++    AegisName: ECO_BANSHEE
++    Name: Grave Banshee
++    Level: 254
++    Hp: 4724400
++    BaseExp: 134983
++    JobExp: 89989
++    Attack: 10110
++    Attack2: 6400
++    Defense: 534
++    MagicDefense: 280
++    MagicResistance: 250
++    Resistance: 250
++    Str: 339
++    Agi: 211
++    Vit: 124
++    Int: 108
++    Dex: 387
++    Luk: 66
++    AttackRange: 2
++    SkillRange: 10
++    ChaseRange: 12
++    Size: Medium
++    Race: Demon
++    Element: Dark
++    ElementLevel: 2
++    WalkSpeed: 150
++    AttackDelay: 421
++    AttackMotion: 504
++    DamageMotion: 420
++    DamageTaken: 10
++    Ai: 04
++    Modes:
++      Detector: true
++    Drops:
++      - Item: Old_White_Cloth
++        Rate: 1500
++      - Item: Mementos
++        Rate: 750
++      - Item: Brigan
++        Rate: 2668
++      - Item: Shadowdecon
++        Rate: 5
++      - Item: Shadowdecon_Ore
++        Rate: 100
++  - Id: 21578
++    AegisName: ECO_KNIGHT_OF_ABYSS
++    Name: Grave Abysmal Knight
++    Level: 250
++    Hp: 5625000
++    BaseExp: 160714
++    JobExp: 107143
++    Attack: 7983
++    Attack2: 5679
++    Defense: 422
++    MagicDefense: 200
++    MagicResistance: 250
++    Resistance: 250
++    Str: 288
++    Agi: 223
++    Vit: 150
++    Int: 69
++    Dex: 338
++    Luk: 77
++    AttackRange: 2
++    SkillRange: 10
++    ChaseRange: 12
++    Size: Large
++    Race: Demihuman
++    Element: Dark
++    ElementLevel: 4
++    WalkSpeed: 240
++    AttackDelay: 252
++    AttackMotion: 672
++    DamageMotion: 240
++    DamageTaken: 10
++    Ai: 04
++    Drops:
++      - Item: Reins
++        Rate: 2668
++      - Item: Blade_Lost_In_Darkness
++        Rate: 15
++      - Item: Elunium
++        Rate: 185
++      - Item: Zelunium
++        Rate: 5
++      - Item: Zelunium_Ore
++        Rate: 100
++  - Id: 21579
++    AegisName: ECO_LORD_OF_DEATH
++    Name: Grave Lord of the Dead
++    Level: 260
++    Hp: 34905000
++    BaseExp: 997286
++    JobExp: 664857
++    Attack: 11089
++    Attack2: 4899
++    Defense: 503
++    MagicDefense: 388
++    MagicResistance: 300
++    Resistance: 300
++    Str: 311
++    Agi: 287
++    Vit: 179
++    Int: 187
++    Dex: 380
++    Luk: 97
++    AttackRange: 1
++    SkillRange: 10
++    ChaseRange: 12
++    Size: Large
++    Race: Demon
++    Element: Dark
++    ElementLevel: 3
++    WalkSpeed: 150
++    AttackDelay: 1446
++    AttackMotion: 1296
++    DamageMotion: 360
++    DamageTaken: 10
++    Ai: 21
++    Class: Boss
++    Modes:
++      Detector: true
++    Drops:
++      - Item: Boroken_Shiled_Piece
++        Rate: 2668
++      - Item: Shine_Spear_Blade
++        Rate: 5
++      - Item: Oridecon
++        Rate: 500
++      - Item: Zelunium
++        Rate: 1000
++      - Item: Shadowdecon
++        Rate: 1000
+ #  - Id: 21580
+ #    AegisName: G_BIJOU
+ #  - Id: 21581
+diff --git a/npc/re/merchants/barters.yml b/npc/re/merchants/barters.yml
+index 06af74d4d70..9d509c80688 100644
+--- a/npc/re/merchants/barters.yml
++++ b/npc/re/merchants/barters.yml
+@@ -59,3 +59,4 @@ Footer:
+   - Path: npc/re/merchants/barters/rgsr_in.yml
+   - Path: npc/re/merchants/barters/enchan_illusion_16_2.yml
+   - Path: npc/re/merchants/barters/quests_exp_175.yml
++  - Path: npc/re/merchants/barters/biosphere.yml
+diff --git a/npc/re/merchants/barters/biosphere.yml b/npc/re/merchants/barters/biosphere.yml
+new file mode 100644
+index 00000000000..a5de9658aa2
+--- /dev/null
++++ b/npc/re/merchants/barters/biosphere.yml
+@@ -0,0 +1,319 @@
++# This file is a part of rAthena.
++#   Copyright(C) 2022 rAthena Development Team
++#   https://rathena.org - https://github.com/rathena
++#
++# This program is free software: you can redistribute it and/or modify
++# it under the terms of the GNU General Public License as published by
++# the Free Software Foundation, either version 3 of the License, or
++# (at your option) any later version.
++#
++# This program is distributed in the hope that it will be useful,
++# but WITHOUT ANY WARRANTY; without even the implied warranty of
++# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
++# GNU General Public License for more details.
++#
++# You should have received a copy of the GNU General Public License
++# along with this program. If not, see <http://www.gnu.org/licenses/>.
++#
++###########################################################################
++# Barter Database
++###########################################################################
++#
++# Barter Settings
++#
++###########################################################################
++#  - Name               NPC name.
++#    Map                Map name. (Default: not on a map)
++#    X                  Map x coordinate. (Default: 0)
++#    Y                  Map y coordinate. (Default: 0)
++#    Direction          Direction the NPC is looking. (Default: North)
++#    Sprite             Sprite name of the NPC. (Default: FakeNpc)
++#    Items:             List of sold items.
++#      - Index          Index of the item inside the shop. (0-...)
++#                       Maximum index depends on client.
++#        Item           Aegis name of the item.
++#        Stock          Amount of item in stock. 0 means unlimited. (Default: 0)
++#        Zeny           Cost of them item in Zeny. (Default: 0)
++#        RequiredItems: List of required items (Optional)
++#          - Index      Index of the required item. (0-4)
++#            Item       Aegis name of required item.
++#            Amount     Amount of required item. (Default: 1)
++#            Refine     Refine level of required item. (Default: 0)
++###########################################################################
++
++Header:
++  Type: BARTER_DB
++  Version: 1
++
++Body:
++  - Name: barter_biosphere_1
++    Items:
++      - Index: 0
++        Item: Plain_Barmund_Rune2
++        Zeny: 20000
++        RequiredItems:
++          - Index: 0
++            Item: Plain_Barmund_Rune
++            Amount: 10
++      - Index: 1
++        Item: Flame_Barmund_Rune2
++        Zeny: 20000
++        RequiredItems:
++          - Index: 0
++            Item: Flame_Barmund_Rune
++            Amount: 10
++      - Index: 2
++        Item: Ice_Barmund_Rune2
++        Zeny: 20000
++        RequiredItems:
++          - Index: 0
++            Item: Ice_Barmund_Rune
++            Amount: 10
++      - Index: 3
++        Item: Death_Barmund_Rune2
++        Zeny: 20000
++        RequiredItems:
++          - Index: 0
++            Item: Death_Barmund_Rune
++            Amount: 10
++  - Name: barter_biosphere_2
++    Items:
++      - Index: 0
++        Item: Barmund_Plain_Armor
++        Zeny: 300000
++        RequiredItems:
++          - Index: 0
++            Item: Barmund_Armor
++          - Index: 1
++            Item: Plain_Barmund_Rune2
++            Amount: 30
++      - Index: 1
++        Item: Barmund_Plain_Hood
++        Zeny: 200000
++        RequiredItems:
++          - Index: 0
++            Item: Barmund_Manteau
++          - Index: 1
++            Item: Plain_Barmund_Rune2
++            Amount: 20
++      - Index: 2
++        Item: Barmund_Plain_Boots
++        Zeny: 150000
++        RequiredItems:
++          - Index: 0
++            Item: Barmund_Greave
++          - Index: 1
++            Item: Plain_Barmund_Rune2
++            Amount: 15
++      - Index: 3
++        Item: Barmund_Flame_Armor
++        Zeny: 300000
++        RequiredItems:
++          - Index: 0
++            Item: Barmund_Armor
++          - Index: 1
++            Item: Flame_Barmund_Rune2
++            Amount: 30
++      - Index: 4
++        Item: Barmund_Flame_Hood
++        Zeny: 200000
++        RequiredItems:
++          - Index: 0
++            Item: Barmund_Manteau
++          - Index: 1
++            Item: Flame_Barmund_Rune2
++            Amount: 20
++      - Index: 5
++        Item: Barmund_Flame_Boots
++        Zeny: 150000
++        RequiredItems:
++          - Index: 0
++            Item: Barmund_Greave
++          - Index: 1
++            Item: Flame_Barmund_Rune2
++            Amount: 15
++      - Index: 6
++        Item: Barmund_Ice_Armor
++        Zeny: 300000
++        RequiredItems:
++          - Index: 0
++            Item: Barmund_Armor
++          - Index: 1
++            Item: Ice_Barmund_Rune2
++            Amount: 30
++      - Index: 7
++        Item: Barmund_Ice_Hood
++        Zeny: 200000
++        RequiredItems:
++          - Index: 0
++            Item: Barmund_Manteau
++          - Index: 1
++            Item: Ice_Barmund_Rune2
++            Amount: 20
++      - Index: 8
++        Item: Barmund_Ice_Boots
++        Zeny: 150000
++        RequiredItems:
++          - Index: 0
++            Item: Barmund_Greave
++          - Index: 1
++            Item: Ice_Barmund_Rune2
++            Amount: 15
++      - Index: 9
++        Item: Barmund_Death_Armor
++        Zeny: 300000
++        RequiredItems:
++          - Index: 0
++            Item: Barmund_Armor
++          - Index: 1
++            Item: Death_Barmund_Rune2
++            Amount: 30
++      - Index: 10
++        Item: Barmund_Death_Hood
++        Zeny: 200000
++        RequiredItems:
++          - Index: 0
++            Item: Barmund_Manteau
++          - Index: 1
++            Item: Death_Barmund_Rune2
++            Amount: 20
++      - Index: 11
++        Item: Barmund_Death_Boots
++        Zeny: 150000
++        RequiredItems:
++          - Index: 0
++            Item: Barmund_Greave
++          - Index: 1
++            Item: Death_Barmund_Rune2
++            Amount: 15
++      - Index: 12
++        Item: Barmund_Temple_Ring
++        Stock: 0
++        Zeny: 200000
++        RequiredItems:
++          - Index: 0
++            Item: aegis_490297
++            Amount: 1
++          - Index: 1
++            Item: Temple_Barmund_Rune2
++            Amount: 20
++      - Index: 13
++        Item: Barmund_Venom_Ring
++        Stock: 0
++        Zeny: 200000
++        RequiredItems:
++          - Index: 0
++            Item: aegis_490297
++            Amount: 1
++          - Index: 1
++            Item: Venom_Barmund_Rune2
++            Amount: 20
++      - Index: 14
++        Item: Barmund_Soul_Ring
++        Stock: 0
++        Zeny: 200000
++        RequiredItems:
++          - Index: 0
++            Item: aegis_490297
++            Amount: 1
++          - Index: 1
++            Item: Soul_Barmund_Rune2
++            Amount: 20
++  - Name: barter_biosphere_3
++    Items:
++      - Index: 0
++        Item: ST_Orleans_Gown
++        Zeny: 3000000
++        RequiredItems:
++          - Index: 0
++            Item: Death_Barmund_Rune2
++            Amount: 100
++          - Index: 1
++            Item: Brigan
++            Amount: 200
++          - Index: 2
++            Item: Orleans_Gown
++      - Index: 1
++        Item: ST_Orleans_Server
++        Zeny: 3000000
++        RequiredItems:
++          - Index: 0
++            Item: Death_Barmund_Rune2
++            Amount: 50
++          - Index: 1
++            Item: Brigan
++            Amount: 200
++          - Index: 2
++            Item: Orleans_Server
++      - Index: 2
++        Item: ST_Orleans_Glove
++        Zeny: 3000000
++        RequiredItems:
++          - Index: 0
++            Item: Death_Barmund_Rune2
++            Amount: 100
++          - Index: 1
++            Item: Brigan
++            Amount: 200
++          - Index: 2
++            Item: Orleans_Glove
++      - Index: 3
++        Item: ST_Pinquicula_Corsage
++        Zeny: 1500000
++        RequiredItems:
++          - Index: 0
++            Item: Plain_Barmund_Rune2
++            Amount: 50
++          - Index: 1
++            Item: Sharp_Leaf
++            Amount: 200
++          - Index: 2
++            Item: Pinguicula_Corsage
++      - Index: 4
++        Item: ST_Waterdrop_Brooch
++        Zeny: 1500000
++        RequiredItems:
++          - Index: 0
++            Item: Ice_Barmund_Rune2
++            Amount: 50
++          - Index: 1
++            Item: Fluorescent_Liquid
++            Amount: 200
++          - Index: 2
++            Item: Waterdrop_Brooch
++      - Index: 5
++        Item: ST_Servival_Cloak
++        Zeny: 3000000
++        RequiredItems:
++          - Index: 0
++            Item: Ice_Barmund_Rune2
++            Amount: 75
++          - Index: 1
++            Item: Ice_Scale
++            Amount: 5
++          - Index: 2
++            Item: Clack_Of_Servival
++      - Index: 6
++        Item: ST_Naga_Armor
++        Zeny: 3000000
++        RequiredItems:
++          - Index: 0
++            Item: Flame_Barmund_Rune2
++            Amount: 50
++          - Index: 1
++            Item: Scales_Shell
++            Amount: 200
++          - Index: 2
++            Item: Armor_Of_Naga
++      - Index: 7
++        Item: ST_Naga_Shield
++        Zeny: 3000000
++        RequiredItems:
++          - Index: 0
++            Item: Flame_Barmund_Rune2
++            Amount: 50
++          - Index: 1
++            Item: Scales_Shell
++            Amount: 200
++          - Index: 2
++            Item: Shield_Of_Naga
+diff --git a/npc/re/merchants/biosphere.txt b/npc/re/merchants/biosphere.txt
+new file mode 100644
+index 00000000000..3aa158cf559
+--- /dev/null
++++ b/npc/re/merchants/biosphere.txt
+@@ -0,0 +1,252 @@
++//===== rAthena Script =======================================
++//= Varmundt's Biosphere
++//===== Description: =========================================
++//= [Walkthrough Conversion]
++//= Varmundt's Biosphere guide / exchange npcs
++//===== Changelog: ===========================================
++//= 1.0 Initial release [Capuche]
++//============================================================
++
++// Guide
++ba_in01,252,353,5	script	Admin beta#ms01	4_EP17_BASIC_B,3,3,{
++	mes "[Admin beta]";
++	mes "Guest, do you need a guide inside the mansion?";
++	next;
++	mes "[Admin beta]";
++	mes "Inside this door is the biosphere, an artificial habitat created by Varmundt for ecological research, and the bathhouse, Meditatio.";
++	next;
++	switch( select( "Information on artificial habitats", "Information on the baths" ) ) {
++	case 1:
++		mes "[Admin beta]";
++		mes "Are you curious about artificial habitats?";
++		next;
++		switch( select( "What is artificial habitat?", "Guidance on artificial habitat location" ) ) {
++		case 1:
++			mes "[Admin beta]";
++			mes "As mentioned earlier, the artificial habitat was directly managed by Varmundt as a space created by imitating the actual natural environment and topography for ecological research.";
++			next;
++			mes "[Admin beta]";
++			mes "Varmundt created a specimen environment of a place he was particularly interested in, and released and studied specimen life forms suitable for it.";
++			next;
++			mes "[Admin beta]";
++			mes "However, due to the prolonged absence of the master, the artificial habitat has been firmly closed until now.";
++			next;
++			mes "[Admin beta]";
++			mes "Since Varmundt also had the key, we didn't bother to open it for the sake of a pure environment uncontaminated by external factors...";
++			next;
++			mes "[Admin beta]";
++			mes "But recently I felt the need to open the door to the artificial habitat after reports of unusual energy inside.";
++			next;
++			mes "[Admin beta]";
++			mes "Found it!";
++			next;
++			select( "What?" );
++			mes "[Admin beta]";
++			mes "Mansion manager Alpha has scanned the mansion and finally found the master key.";
++			next;
++			mes "[Admin beta]";
++			mes "But, unlike us, who are always the same over time, life seems to change...";
++			next;
++			mes "[Admin beta]";
++			mes "The specimen organisms have grown and become stronger in their habitats as they have been left isolated from the outside world for a long time. From a biological point of view, this is a great achievement, and even Varmundt would be delighted...";
++			next;
++			mes "[Admin beta]";
++			mes "No, um... We were very happy, too. I was happy until a lot of monsters flocked to the open door after a long time.";
++			next;
++			mes "[Admin beta]";
++			mes "If you look at the magic group that we put on to identify the monster family, it was the monster in the data, but the monsters that survived for a long time in extreme situations were stronger than the monsters in the data we had.";
++			next;
++			if (BaseLevel < 230) {
++				mes "[Admin beta]";
++				mes "So it's a little difficult situation, but we're a bit incapable of responding, so I hope you can help me a little...";
++				next;
++				mes "[Admin beta]";
++				mes "I think it will be difficult for guests who are adventurers to enter. It is a place where dangerous monsters are concentrated, so the door is only open to adventurers whose base level is 230^000000 or higher.";
++				next;
++				mes "[Admin beta]";
++				mes "I hope you can help me next time.";
++				close;
++			}
++			mes "[Admin beta]";
++			mes "With no data, we are not strong enough to deal with powerful monsters, so we closed the door and waited for the guests.";
++			next;
++			select( "Me?" );
++			mes "[Admin beta]";
++			mes "From what I've observed, the guest likes adventure. I've also seen " + ( Sex ? "him" : "her" ) + " ignite a sense of challenge toward new things in this mansion.";
++			mes "The customer is very strong and the response to all variables was very quick and accurate.";
++			next;
++			mes "[Admin beta]";
++			mes "That's why we decided to first open up an artificial habitat that no one has visited in years, to our experienced adventurer guests.";
++			next;
++			mes "[Admin beta]";
++			mes "We want to focus on man-made habitat management while our guests are adventurous with monsters.";
++			next;
++			select( "It seems to be passing it on somehow..." );
++			mes "[Admin beta]";
++			mes "Shouldn't you leave the job to the experts? Let's leave it to the experts who are a bit more specialized in dealing with monsters. It is our judgment that there is no one other than the customer who can handle this difficult task.";
++			next;
++			mes "[Admin beta]";
++			mes "Besides, not all artificial habitats are open, but only the most urgent cold, flame, grassland, and death specimen environments, so the burden will be small.";
++			next;
++			mes "[Admin beta]";
++			mes "You may own anything you got from the artificial habitat. One more here.";
++			next;
++			mes "[Admin beta]";
++			mes "Rare items obtained from monsters will be made into strong equipment <NAVI>[here]<INFO>ba_in01,362,48,0,101,0</INFO></NAVI>, so it would be a good idea to take a look at them as adventurers. It's a mutual aid to the last degree.";
++			close;
++		case 2:
++			switch( select( "Sample environment - ^0000cdIce^000000", "Sample environment - ^ff0000Fire^000000", "Sample environment - ^006600Grassland^000000", "Sample environment - ^660099Death^000000", "Equipment Combination" ) ) {
++			case 1:
++				mes "[Admin beta]";
++				mes "Sample Environment - <FONT COLOR = 0000cd><B>Ice</B></FONT>";
++				mes "It embodies the ecosystem of a region dominated by bitter cold. It is home to powerful monsters that survived the bitter cold.";
++				close2;
++				navigateto("ba_in01",310,38);
++				end;
++			case 2:
++				mes "[Admin beta]";
++				mes "Sample Environment - <FONT COLOR = ff0000><B>Fire</B></FONT>";
++				mes "This is the implementation of the ecosystem of the flame region. The monsters that survived burn even hotter in the land where everything melts.";
++				close2;
++				navigateto("ba_in01",311,56);
++				end;
++			case 3:
++				mes "[Admin beta]";
++				mes "Sample Environment - <FONT COLOR = 006600><B>Grass</B></FONT>";
++				mes "It embodies the ecosystem of the grassland area. Unlike other habitats, you might think that it is a temperate environment, but living things grow better in such an environment.";
++				close2;
++				navigateto("ba_in01",325,56);
++				end;
++			case 4:
++				mes "[Admin beta]";
++				mes "Sample Environment - <FONT COLOR = 660099><B>Death</B></FONT>";
++				mes "This is a place that embodies the ecosystem of the area where the aura of death is present. There are many monsters who have gained more power at the border of death and life, so be careful.";
++				close2;
++				navigateto("ba_in01",339,56);
++				end;
++			case 5:
++				mes "[Admin beta]";
++				mes "Adventurous guests show great interest in powerful equipment.";
++				next;
++				mes "[Admin beta]";
++				mes "So, I've found a way to transform runes and equipment obtained from artificial habitats into powerful equipment that can't be found anywhere, so if you're interested, please visit it.";
++				close2;
++				navigateto("ba_in01",362,48);
++				end;
++			}
++		}
++		end;
++	case 2:
++		mes "[Admin beta]";
++		mes "The Large Bath Meditatio is the largest recreational facility in the Varmundt Mansion. The owner used to end the day here by relieving old fatigue.";
++		next;
++		mes "[Admin beta]";
++		mes "Varmundt showed great interest in the various effects of water and herbs, and gradually expanded the bath facilities in the mansion, and Meditatio has the current bath facilities.";
++		next;
++		mes "[Admin beta]";
++		mes "Varmundt provided bathing facilities to the guests staying at the mansion. The guests admired the fairly large bathing facilities and cherished them without hesitation.";
++		next;
++		mes "[Admin beta]";
++		mes "Meditatio has baths with unique nicknames. Among the guests, the place called the Fountain of Wisdom seems to be particularly popular.";
++		next;
++		select( "That's a nice place" );
++		mes "[Admin beta]";
++		mes "But... It looks like there's been a bit of a problem lately. Oh, that's right. It would be nice for an adventurer who is an expert in this field to visit.";
++		next;
++		mes "[Admin beta]";
++		mes "Go to the <NAVI>[gentleman]<INFO>ba_in01,384,38,0,101,0</INFO></NAVI> who manages it, and you will get directions.";
++		close;
++	}
++	end;
++
++OnTouch:
++	npctalk "Guest, do you need a guide inside the mansion?", "", bc_self;
++	end;
++}
++
++
++// Exchange npcs
++ba_in01,358,50,8	script	Omega#ms01	EP17_2_OMEGA_CLEANER,{
++	mes "[Omega]";
++	mes "Vrr-R-R-R-R-R-R-R-R";
++	next;
++	mes "[" + strcharinfo(0) + "]";
++	mes "It seems to convert the pieces of runes obtained inside the artificial habitat into complete runes.";";
++	close2;
++	callshop( "barter_biosphere_1" );
++	end;
++
++OnWalk1:
++	npctalk "Vrr-R-R-R-R-R-R";
++	unitstopwalk getnpcid(0), USW_FORCE_STOP;
++	unitwalk getnpcid(0),365,50, strnpcinfo(0) + "::OnWalk2";
++	end;
++OnWalk2:
++	unitstopwalk getnpcid(0), USW_FORCE_STOP;
++	unitwalk getnpcid(0),358,50, strnpcinfo(0) + "::OnWalk1";
++	end;
++OnInit:
++	npcspeed 500;	// todo check
++	donpcevent strnpcinfo(0) + "::OnWalk1";
++	end;
++}
++
++ba_in01,359,53,5	script	Beta#ms02	4_EP17_TABLET,3,3,{
++	mes "[Beta]";
++	mes "If you came here, you must have learned something from the artificial habitat, right?";
++	next;
++	mes "[Beta]";
++	mes "If you bring Varmundt's gear you acquired in the artificial habitat with the runes, we'll engrave the runes on your gear. Please think of it as a small thank you to the adventurers who help us.";
++	next;
++	mes "[Beta]";
++	mes "The rune used for engraving is being handled by Omega in front of me. Bring me the rune fragment and I will turn it into a complete rune.";
++	next;
++	mes "[Beta]";
++	mes "Then please take a look at my inventory. These beautiful gear...!";
++	close2;
++	callshop( "barter_biosphere_2" );
++	end;
++
++OnTouch:
++	npctalk "Guest, do you have any items from the artificial habitat?", "", bc_self;
++	end;
++}
++
++ba_in01,361,53,5	script	Beta#ms03	4_EP17_SCISSORE,{
++	mes "[Beta]";
++	mes "Hey, adventurers? That's great. Welcome back. Listen to me. Great equipment that adventurers might be interested in, I know.";
++	next;
++	mes "[Beta]";
++	mes "One day, the rune fragments I brought from the artificial habitat were turned into whole runes by Omega here.";
++	next;
++	mes "[Beta]";
++	mes "I was looking at the runes, and I suddenly remembered something, so I imprinted the runes on the equipment left by the guests using some matching items as a medium. I think this is the genius the guests were talking about.";
++	next;
++	mes "[Beta]";
++	mes "But it's not possible for all equipment, uh, that's only for some equipment... oh wow!! Just take a look. I'll imprint it as a thank you to the customers who help us!";
++	close2;
++	callshop( "barter_biosphere_3" );
++	end;
++}
++
++ba_in01,363,53,5	script	Beta#ms04	4_EP17_BASKET,3,3,{
++	mes "[Beta]";
++	mes "Do you have Varmundt's engraving equipment obtained from the artificial habitat?";
++	mes "^0000cdIf the equipment is refined at least to 7^000000, you can enchant it.";
++	mes "In the case of a ring, it is possible to enchant it at any time.";
++	next;
++	mes "[Beta]";
++	mes "You can enchant up to 2 times if you bring a rune that matches the property of each equipment and a small fee. You can also reset the enchantment.";
++	next;
++	.@base_index = 52;	// Grassland Enchantment index
++	.@s = select( "Grassland Equipment Enchantment", "Fire Equipment Enchantment", "Ice Equipment Enchantment", "Death Equipment Enchantment", "Soul Equipment Enchantment", "Poison Equipment Enchantment", "Church Equipment Enchantment" ) - 1;
++	mes "[Beta]";
++	mes "Okay, I'll help you enchant right away.";
++	close2;
++	item_enchant( .@base_index + .@s );
++	end;
++
++OnTouch:
++	npctalk "If you have Varmundt's engraving equipment, come this way.", "", bc_self;
++	end;
++}
+diff --git a/npc/re/mobs/dungeons/biosphere.txt b/npc/re/mobs/dungeons/biosphere.txt
+new file mode 100644
+index 00000000000..45f0245d5a9
+--- /dev/null
++++ b/npc/re/mobs/dungeons/biosphere.txt
+@@ -0,0 +1,45 @@
++//===== rAthena Script =======================================
++//= Varmundt's Biosphere 
++//===== Description: =========================================
++//= [Walkthrough Conversion]
++//= Varmundt's Biosphere dungeons Monster Spawn Script.
++//= Note: Boss respawn time is unknown.
++//===== Changelog: ===========================================
++//= 1.0 First version. [Capuche]
++//============================================================
++
++bl_death	monster	--ja--	21572,30	//  ECO_ANCIENT_MUMMY
++bl_death	monster	--ja--	21573,35	//  ECO_LUDE
++bl_death	monster	--ja--	21574,30	//  ECO_RAGGED_ZOMBIE
++bl_death	monster	--ja--	21575,35	//  ECO_WRAITH
++bl_death	monster	--ja--	21576,35	//  ECO_FLAME_SKULL
++bl_death	monster	--ja--	21577,45	//  ECO_BANSHEE
++bl_death	monster	--ja--	21578,15	//  ECO_KNIGHT_OF_ABYSS
++bl_death	boss_monster	--ja--	21579,1,21600000,600000,0	//  ECO_LORD_OF_DEATH
++
++bl_grass	monster	--ja--	21548,40	//  ECO_CORNUS
++bl_grass	monster	--ja--	21549,45	//  ECO_PINGUICULA
++bl_grass	monster	--ja--	21550,25	//  ECO_HUNTER_FLY
++bl_grass	monster	--ja--	21551,40	//  ECO_ROCKER
++bl_grass	monster	--ja--	21552,40	//  ECO_SAVAGE
++bl_grass	monster	--ja--	21553,25	//  ECO_FLORA
++bl_grass	monster	--ja--	21554,45	//  ECO_HILL_WIND
++bl_grass	boss_monster	--ja--	21555,1,21600000,600000,0	//  ECO_MISTRESS
++
++bl_ice	monster	--ja--	21564,35	//  ECO_ICE_TITAN
++bl_ice	monster	--ja--	21565,35	//  ECO_SIROMA
++bl_ice	monster	--ja--	21566,35	//  ECO_SNOWIER
++bl_ice	monster	--ja--	21567,35	//  ECO_CENTIPEDE
++bl_ice	monster	--ja--	21568,45	//  ECO_AQUA_ELEMENTAL
++bl_ice	monster	--ja--	21569,25	//  ECO_ANGELGOLT
++bl_ice	monster	--ja--	21570,15	//  ECO_RHYNCHO
++bl_ice	boss_monster	--ja--	21571,1,21600000,600000,0	//  ECO_KTULLANUX
++
++bl_lava	monster	--ja--	21556,40	//  ECO_EXPLOSION
++bl_lava	monster	--ja--	21557,40	//  ECO_DELETER
++bl_lava	monster	--ja--	21558,30	//  ECO_JAKK
++bl_lava	monster	--ja--	21559,35	//  ECO_LAVA_GOLEM
++bl_lava	monster	--ja--	21560,30	//  ECO_MAJORUROS
++bl_lava	monster	--ja--	21561,15	//  ECO_HYDRO
++bl_lava	monster	--ja--	21562,35	//  ECO_ACIDUS
++bl_lava	boss_monster	--ja--	21563,1,21600000,600000,0	//  ECO_DETALE
+diff --git a/npc/re/scripts_athena.conf b/npc/re/scripts_athena.conf
+index 254b1aeb2fa..5867ec32da0 100644
+--- a/npc/re/scripts_athena.conf
++++ b/npc/re/scripts_athena.conf
+@@ -119,6 +119,7 @@ npc: npc/re/merchants/advanced_refiner.txt
+ npc: npc/re/merchants/alchemist.txt
+ npc: npc/re/merchants/ammo_boxes.txt
+ npc: npc/re/merchants/bio4_reward.txt
++npc: npc/re/merchants/biosphere.txt
+ //npc: npc/re/merchants/blessed_refiner.txt
+ //npc: npc/re/merchants/card_exchange.txt
+ npc: npc/re/merchants/card_separation.txt
+diff --git a/npc/re/scripts_monsters.conf b/npc/re/scripts_monsters.conf
+index 106cb096a67..bf3e6cc12cd 100644
+--- a/npc/re/scripts_monsters.conf
++++ b/npc/re/scripts_monsters.conf
+@@ -24,6 +24,7 @@ npc: npc/re/mobs/dungeons/ba_bath.txt
+ npc: npc/re/mobs/dungeons/ba_lib.txt
+ npc: npc/re/mobs/dungeons/ba_pw.txt
+ npc: npc/re/mobs/dungeons/beach_dun.txt
++npc: npc/re/mobs/dungeons/biosphere.txt
+ npc: npc/re/mobs/dungeons/bra_dun.txt
+ npc: npc/re/mobs/dungeons/c_tower.txt
+ npc: npc/re/mobs/dungeons/dew_dun.txt
+diff --git a/npc/re/scripts_warps.conf b/npc/re/scripts_warps.conf
+index 20a01c35928..9d20e98e02a 100644
+--- a/npc/re/scripts_warps.conf
++++ b/npc/re/scripts_warps.conf
+@@ -21,6 +21,7 @@ npc: npc/re/warps/cities/yggdrasil.txt
+ 
+ // -------------------------- Dungeons --------------------------
+ npc: npc/re/warps/dungeons/amicitia.txt
++npc: npc/re/warps/dungeons/biosphere.txt
+ npc: npc/re/warps/dungeons/bra_dun.txt
+ npc: npc/re/warps/dungeons/dic_dun.txt
+ npc: npc/re/warps/dungeons/ecl_dun.txt
+diff --git a/npc/re/warps/dungeons/biosphere.txt b/npc/re/warps/dungeons/biosphere.txt
+new file mode 100644
+index 00000000000..016c5341f50
+--- /dev/null
++++ b/npc/re/warps/dungeons/biosphere.txt
+@@ -0,0 +1,57 @@
++//===== rAthena Script =======================================
++//= Varmundt's Biosphere
++//===== Description: =========================================
++//= [Walkthrough Conversion] 
++//= Varmundt's Biosphere Dungeon Warps Script
++//===== Changelog: ===========================================
++//= 1.0 First version [Capuche]
++//============================================================
++
++bl_ice,36,81	warp2	#icetoba	1,1,ba_in01,307,38
++bl_lava,163,14	warp2	#lavatoba	1,1,ba_in01,311,53
++bl_grass,157,16	warp2	#grasstoba	1,1,ba_in01,325,53
++bl_death,315,59,0	warp2	#deathtoba	1,1,ba_in01,339,53
++
++ba_in01,310,38,0	script	#batoice	WARPNPC,1,1,{
++	end;
++OnTouch:
++	if (BaseLevel < 230) {
++		mes "^0000cdThis door is only open to those with a base level of 240 or higher^000000.";
++		close;
++	}
++	warp "bl_ice",39,81;
++	end;
++}
++
++ba_in01,311,56,0	script	#batolava	WARPNPC,1,1,{
++	end;
++OnTouch:
++	if (BaseLevel < 230) {
++		mes "^0000cdThis door is only open to those with a base level of 240 or higher^000000.";
++		close;
++	}
++	warp "bl_lava",163,17;
++	end;
++}
++
++ba_in01,325,56,0	script	#batograss	WARPNPC,1,1,{
++	end;
++OnTouch:
++	if (BaseLevel < 230) {
++		mes "^0000cdThis door is only open to those with a base level of 240 or higher^000000.";
++		close;
++	}
++	warp "bl_grass",157,19;
++	end;
++}
++
++ba_in01,339,56,0	script	#batodeath	WARPNPC,1,1,{
++	end;
++OnTouch:
++	if (BaseLevel < 230) {
++		mes "^0000cdThis door is only open to those with a base level of 240 or higher^000000.";
++		close;
++	}
++	warp "bl_death",315,62;
++	end;
++}
+
+From 8989ac9600c3d1518cbaa5bf77d23651469ef912 Mon Sep 17 00:00:00 2001
+From: Atemo <capucrath@gmail.com>
+Date: Mon, 12 Jun 2023 01:24:17 +0200
+Subject: [PATCH 2/2] Corrected the npc speed
+
+---
+ npc/re/merchants/biosphere.txt | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/npc/re/merchants/biosphere.txt b/npc/re/merchants/biosphere.txt
+index 3aa158cf559..d59d2f32f3d 100644
+--- a/npc/re/merchants/biosphere.txt
++++ b/npc/re/merchants/biosphere.txt
+@@ -171,7 +171,7 @@ ba_in01,358,50,8	script	Omega#ms01	EP17_2_OMEGA_CLEANER,{
+ 	mes "Vrr-R-R-R-R-R-R-R-R";
+ 	next;
+ 	mes "[" + strcharinfo(0) + "]";
+-	mes "It seems to convert the pieces of runes obtained inside the artificial habitat into complete runes.";";
++	mes "It seems to convert the pieces of runes obtained inside the artificial habitat into complete runes.";
+ 	close2;
+ 	callshop( "barter_biosphere_1" );
+ 	end;
+@@ -186,7 +186,7 @@ OnWalk2:
+ 	unitwalk getnpcid(0),358,50, strnpcinfo(0) + "::OnWalk1";
+ 	end;
+ OnInit:
+-	npcspeed 500;	// todo check
++	npcspeed 900;
+ 	donpcevent strnpcinfo(0) + "::OnWalk1";
+ 	end;
+ }
