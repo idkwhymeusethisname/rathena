@@ -4272,6 +4272,7 @@
 	export_constant(RC2_SCARABA);
 	export_constant(RC2_OGH_ATK_DEF);
 	export_constant(RC2_OGH_HIDDEN);
+	export_constant(RC2_GREENAURA);	
 	export_constant(RC2_BIO5_SWORDMAN_THIEF);
 	export_constant(RC2_BIO5_ACOLYTE_MERCHANT);
 	export_constant(RC2_BIO5_MAGE_ARCHER);

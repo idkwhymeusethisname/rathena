@@ -33,6 +33,7 @@
 #include "itemdb.hpp"
 #include "log.hpp"
 #include "map.hpp"
+#include "mapreg.hpp"
 #include "mercenary.hpp"
 #include "npc.hpp"
 #include "party.hpp"
@@ -2584,6 +2585,10 @@ int mob_dead(struct mob_data *md, struct block_list *src, int type)
 	memset(tmpsd,0,sizeof(tmpsd));
 	for(i = 0, count = 0, mvp_damage = 0; i < DAMAGELOG_SIZE && md->dmglog[i].id; i++) {
 		map_session_data* tsd = NULL;
+		if(md->level >= 500 && status_has_mode(&md->status,MD_MVP)){
+			mapreg_setreg(reference_uid(add_str("$@damage_cid"), i), md->dmglog[i].id);
+			mapreg_setreg(reference_uid(add_str("$@damage_done"), i), md->dmglog[i].dmg);
+		}		
 		if (md->dmglog[i].flag == MDLF_SELF) {
 			//Self damage counts as exp tap
 			count++;

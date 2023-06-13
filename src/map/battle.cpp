@@ -1871,7 +1871,12 @@ int64 battle_calc_damage(struct block_list *src,struct block_list *bl,struct Dam
 			status_change_spread(bl, src);
 
 	} //End of target SC_ check
-
+	
+		// Yumi 
+	if (status_get_race2(bl), RC2_GREENAURA) {
+		if (status_get_race2(src), RC2_GREENAURA) // This is for MvP vs MvP event purposes. (damage doesn't get reduced when attacking eachother)
+			damage = damage > 100 ? damage * (100 - battle_config.greenaura_reduction_rate) / 100 : 1; // Reduces damage received by the amount specified in conf/battle/monster.conf	
+	}
 	//SC effects from caster side.
 	status_change* sc = status_get_sc(src);
 
@@ -11083,6 +11088,7 @@ static const struct _battle_data {
 	{ "save_body_style",                    &battle_config.save_body_style,                 1,      0,      1,              },
 	{ "monster_eye_range_bonus",            &battle_config.mob_eye_range_bonus,             0,      0,      10,             },
 	{ "monster_stuck_warning",              &battle_config.mob_stuck_warning,               0,      0,      1,              },
+	{ "greenaura_reduction_rate",           &battle_config.greenaura_reduction_rate,        0,      0,      100,            },	
 	{ "skill_eightpath_algorithm",          &battle_config.skill_eightpath_algorithm,       1,      0,      1,              },
 	{ "skill_eightpath_same_cell",          &battle_config.skill_eightpath_same_cell,       1,      0,      1,              },
 	{ "death_penalty_maxlv",                &battle_config.death_penalty_maxlv,             0,      0,      3,              },
