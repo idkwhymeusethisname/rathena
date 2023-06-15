@@ -6,7 +6,7 @@
 //= 1.0 Initial release for Renewal [L0ne_W0lf]
 //= 1.1 Navigation system update. [Euphy]
 //============================================================
-
+/*
 prontera,154,187,4	script	Guide#01prontera::GuideProntera	105,{
 	cutin "prt_soldier",2;
 	mes "[Prontera Guide]";
@@ -287,8 +287,8 @@ L_Mark:
 		mes "Let me mark the location of the "+getarg(0);
 	mes "on your mini-map.";
 	return;
-}
-prontera,282,208,2	duplicate(GuideProntera)	Guide#02prontera	105
-prontera,29,200,6	duplicate(GuideProntera)	Guide#03prontera	105
-prontera,160,29,0	duplicate(GuideProntera)	Guide#04prontera	105
-prontera,159,326,4	duplicate(GuideProntera)	Guide#05prontera	105
+}*/
+//prontera,282,208,2	duplicate(GuideProntera)	Guide#02prontera	105
+//prontera,29,200,6	duplicate(GuideProntera)	Guide#03prontera	105
+//prontera,160,29,0	duplicate(GuideProntera)	Guide#04prontera	105
+//prontera,159,326,4	duplicate(GuideProntera)	Guide#05prontera	105

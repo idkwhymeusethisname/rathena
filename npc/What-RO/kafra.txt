@@ -1,4 +1,4 @@
-mooc,154,96,5	script	Kafra Employee	113,{
+prontera,152,192,5	script	Kafra Employee	113,{
 	cutin "kafra_05",2;
 	mes "^FF7F50[ Kafra Employee ]^000000";
 	mes "โปรดเลือกบริการ";
@@ -12,7 +12,7 @@ next;
 
 L_Savep:
 	mes "บันทึกเรียบร้อยแล้ว";
-	savepoint "mooc",158,93;
+	savepoint "prontera",155,187;
 	close3;
 
 L_OpenS:

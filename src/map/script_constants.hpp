@@ -8133,6 +8133,8 @@
 	export_constant_npc(JT_ROZ_MQ_SKULD);
 	export_constant_npc(JT_NEW_NPC_3RD_END);
 	export_constant_npc(JT_JOBMASTER);
+	export_constant_npc(JT_MISSIONBOARD);
+	export_constant_npc(JT_GUILDSIGN);
 	#undef export_constant_npc
 
 	/* special effects */
