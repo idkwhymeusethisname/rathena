@@ -1,4 +1,4 @@
-prontera,152,192,5	script	Kafra Employee	113,{
+prontera,151,192,5	script	Kafra Employee	113,{
 	cutin "kafra_05",2;
 	mes "^FF7F50[ Kafra Employee ]^000000";
 	mes "โปรดเลือกบริการ";

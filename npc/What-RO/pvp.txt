@@ -38,9 +38,9 @@ warp "knight_3-1",0,0;
 close;
 
 MaxPlayerRoom:
-mes "   ";
+mes "";
 mes "...^FF0000ห้องไม่ว่าง^000000...";
 close;
 }
 
-mooc,163,96,3	duplicate(pvp)	PVP Express	417
+prontera,160,192,3	duplicate(pvp)	PVP Express	417

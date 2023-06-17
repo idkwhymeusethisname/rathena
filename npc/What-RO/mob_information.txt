@@ -8,7 +8,7 @@
 //= rAthena Project
 //============================================================ 
 
-mooc,155,101,5	script	Monster Information	4_M_DSTMAN,{
+prontera,149,174,5	script	Monster Information	4_EP17_KAYA,{
 	mes .NPCname$;
 	mes "สวัสดี !";
 	mes "เจ้าสามารถตรวจสอบข้อมูล";
@@ -29,6 +29,6 @@ mooc,155,101,5	script	Monster Information	4_M_DSTMAN,{
 	
 OnInit:
 	.NPCname$ = "^FF7F50[ "+strnpcinfo(1)+" ]";
-	//waitingroom "ตรวจสอบข้อมูลมอนสเตอร์",0;
+	waitingroom "[#] ตรวจสอบข้อมูลมอนสเตอร์",0;
 	end;
 }

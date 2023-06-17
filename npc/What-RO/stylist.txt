@@ -13,7 +13,7 @@
 //= 1.1 Switched to 'getbattleflag', credits to Saithis. [Euphy]
 //============================================================
 
-mooc,164,101,3	script	Stylist#custom_stylist	122,{
+prontera,162,165,3	script	Stylist#custom_stylist	878,{
 	mes "^FF7F50[ Stylelist ]";
 	mes "เลือกบริการที่ต้องการ";
 	next;
@@ -25,4 +25,7 @@ mooc,164,101,3	script	Stylist#custom_stylist	122,{
 		callshop "beautyshop",1;
 		close3;
 	}
+OnInit:
+waitingroom "[#] เสริมความงาม",0;
+end;	
 }

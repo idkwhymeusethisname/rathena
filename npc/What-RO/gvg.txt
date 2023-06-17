@@ -8,7 +8,7 @@
 //= 1.0 Start Version
 //= 1.1 Edit By Ragnarok PVP GVG
 //===========================================================
-mooc,166,96,3	script	Guild War	679,{
+prontera,163,192,3	script	Guild War	679,{
 mes "^FF7F50[ Guild War ]";
 mes "ยินดีต้อนรับคุณ :^FF0000 "+strcharinfo(0)+" ^000000 ";
 mes "ต้องการเข้าสู่ประสาท ";

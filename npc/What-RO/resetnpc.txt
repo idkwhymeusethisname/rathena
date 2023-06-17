@@ -11,7 +11,7 @@
 //=	Changed set -> setarray, Improved text with F_InsertPlural
 //= 1.5 Added sc_end_class to reset related status changes [sader1992]
 //============================================================
-mooc,155,105,5	script	Reset Girl	124,{
+prontera,162,168,3	script	Reset Girl	612,{
 	//	 		Skills,	Stats,	Both,	Limit  ราคารีสกิล ( 5000 ), ราคารีสเตตัส ( 5000 ), ราคารีทั้งคู่ ( 9000 ), จำนวนครั้งในการรี ( 0 )
 	setarray .@Reset,	5000000,	5000000,	9000000,	0;
 	mes "^FF7F50[ Reset Girl ]";
@@ -46,4 +46,7 @@ mooc,155,105,5	script	Reset Girl	124,{
 	mes "เรียบร้อย!";
 	if(.@Reset[3]) set reset_limit,reset_limit + 1;
 	close;
+OnInit:
+waitingroom "[#] รีเซ็ตสเตตัสและสกิล",0;
+end;	
 }

@@ -17,7 +17,7 @@
 //= 3.0 Migrate/Integrate to Global Functions. [mazvi]
 //============================================================
 
-mooc,164,105,3	script	Platinum Skill	94,{
+prontera,162,171,3	script	Platinum Skill	743,{
 	mes "^FF7F50[ Platinum Skill ]^000000";
 	mes "ฉันสามารถมอบสกิลพิเศษสำหรับ";
 	mes "อาชีพของของคุณ.";
@@ -32,4 +32,7 @@ mooc,164,105,3	script	Platinum Skill	94,{
 	mes "^FF7F50[ Platinum Skill ]^000000";
 	mes "แล้วเจอกันใหม่!";
 	close;
+OnInit:
+waitingroom "[#] รับสกิลเสริม",0;
+end;	
 }

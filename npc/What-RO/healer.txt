@@ -79,7 +79,7 @@ morocc,153,97,6	duplicate(Healer)	Healer#mor	936
 moscovia,220,191,4	duplicate(Healer)	Healer#mos	936
 niflheim,212,182,5	duplicate(Healer)	Healer#nif	936
 payon,179,106,4	duplicate(Healer)	Healer#pay	936
-prontera,162,193,4	duplicate(Healer)	Healer#prt	936
+//prontera,162,193,4	duplicate(Healer)	Healer#prt	936
 rachel,125,116,6	duplicate(Healer)	Healer#rac	936
 splendide,201,153,4	duplicate(Healer)	Healer#spl	936
 thor_camp,249,74,4	duplicate(Healer)	Healer#thor	936
@@ -105,4 +105,4 @@ wolfvill,140,149,4	duplicate(Healer)	Healer#wolfvill	936
 //sp_cor,156,173,4	duplicate(Healer)	Healer#sp_cor	936
 harboro1,291,203,4	duplicate(Healer)	Healer#harboro1	936
 lasagna,190,187,4	duplicate(Healer)	Healer#lasagna	936
-mooc,157,96,5	duplicate(Healer)	Healer#mooc	936
+prontera,154,192,5	duplicate(Healer)	Healer#mooc	936

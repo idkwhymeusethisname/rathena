@@ -2,7 +2,7 @@
 //==S1P1
 //====================================================================
 //EP 16
-mooc,187,108,3	script	EP16 Clear Ticket	743,{
+prontera,149,171,5	script	EP16 Clear Ticket	743,{
 	if(terra_gloria_main == 25){
 	mes "เจ้าจบเควสทั้งหมดของ EP 16 แล้ว";
 	close;
@@ -64,13 +64,13 @@ setarray .@episodes16[0],
 	close;
 
 OnInit:
-	waitingroom "จบเควส EP 16",0;
+	waitingroom "[#] จบเควส EP 16",0;
 	end;
 }
 
 //====================================================================
 //EP 17
-mooc,187,104,3	script	EP17 Clear Ticket	743,{
+prontera,149,168,5	script	EP17 Clear Ticket	743,{
 	if(ep17_2_main == 36){
 	mes "เจ้าจบเควสทั้งหมดของ EP 17 แล้ว";
 	close;
@@ -130,6 +130,6 @@ setarray .@episodes17[0],
 	close;
 
 OnInit:
-	waitingroom "จบเควส EP 17",0;
+	waitingroom "[#] จบเควส EP 17",0;
 	end;
 }

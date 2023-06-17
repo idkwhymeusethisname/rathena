@@ -16,7 +16,7 @@
 //= 2.0 Added 4th class [Lemongrass]
 //============================================================
 
-mooc,155,109,5	script	Job Master	811,{
+prontera,161,198,5	script	Job Master	4_M_COSTELL,{
 function Get_Job_Equip;
 // Checks if the Player has the required level.
 // closes if not, returns if yes
